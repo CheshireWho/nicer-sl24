@@ -1,4 +1,32 @@
-/* improve colour contrast for orange CTAs */
-a.ctabutton {
-    color: #000077 !important;
+html {
+    body {
+        /* improve colour contrast for orange CTAs */
+        a.ctabutton {
+            color: #000077 !important;
+        }
+
+        /* increase font size */
+        font-size: 18px;
+        #normaltext, .normaltext,
+        .menulink {
+            font-size: 18px;
+        }
+        table td {
+            font-size: 1rem;
+        }
+
+        /* allow scrolling to the end */
+        #containerwithmenu, #containertransparentglobal, #containertransparent, #containerintransparent {
+            padding-bottom: 150px;
+        }
+
+        /* Google Translate links */
+        .gt-link {
+            background: lightseagreen;
+            border: 1px solid darkblue;
+            padding: 0 4px;
+            border-radius: 8px;
+            margin-left: 8px;
+        }
+    }
 }
