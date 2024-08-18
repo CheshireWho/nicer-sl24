@@ -7,9 +7,12 @@ html body a.ctabutton {
 html body {
     font-size: 18px;
 }
-html body #normaltext, html body .normaltext,
-html body .menulink {
+html body #normaltext,
+html body .normaltext {
     font-size: 18px;
+}
+html body .menulink {
+    font-size: 16px;
 }
 html body table td {
     font-size: 1rem;
@@ -25,9 +28,15 @@ html body #containerintransparent {
 
 /* Google Translate links */
 html body .gt-link {
-    background: lightseagreen;
-    border: 1px solid darkblue;
-    padding: 0 4px;
-    border-radius: 8px;
-    margin-left: 8px;
+    display: inline-block;
+    color: #1967d2 !important;
+    background: #4285f41f;
+    border: 1px solid #1967d2;
+    border-radius: 6px;
+    padding: 2px 8px;
+    margin: 4px 0 2px;
+}
+html body .verbzelletd {
+    vertical-align: baseline;
+    text-align: right;
 }
