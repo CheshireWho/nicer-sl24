@@ -22,7 +22,8 @@ html body table td {
 html body #containerwithmenu,
 html body #containertransparentglobal,
 html body #containertransparent,
-html body #containerintransparent {
+html body #containerintransparent,
+html body #Gesamtmenu {
     padding-bottom: 150px;
 }
 
