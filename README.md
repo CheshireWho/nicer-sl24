@@ -25,3 +25,4 @@ Nicer UI for sprachenlernen24
 - More spacing at the bottom of the content, so that it can be scrolled properly.
 - Increase font size.
 - Add links to verb trainer items that open Google Translate in a new tab with the text (Danish only for now).
+- Add input field to daily "Blitz" vocab trainer to allow practicing writing.
