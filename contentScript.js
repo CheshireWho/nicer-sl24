@@ -4,7 +4,12 @@ const initGoogleTranslateLinkCreation = () => {
         'Japanisch': 'jp',
         'Schwedisch': 'sv'
     };
-    const l2 = document.querySelector('input[name="ta_sprache"]')?.value;
+
+    // get learn language from URL
+    const l2regexp = new RegExp(`(${Object.keys(languages).join('|')})`);
+    const l2matches = window.location.search.match(l2regexp);
+    const l2 = l2matches[0];
+    
     const gTLinkClass = 'gt-link';
     const gTSourceLanguage = l2 && languages[l2] ? languages[l2] : 'auto';
     const gTTargetLanguage = 'de';
