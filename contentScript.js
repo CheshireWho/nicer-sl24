@@ -54,7 +54,7 @@ const initGoogleTranslateLinkCreation = () => {
 
 const initVocabTrainerAddWriting = () => {
     const inputClass = 'writing-exercise';
-    let lastTypedText = '';
+    let typedText = '';
 
     const getInputElem = () => {
         const inputElem = document.createElement('input');
@@ -66,7 +66,7 @@ const initVocabTrainerAddWriting = () => {
     };
 
     const blurHandler = (event) => {
-        lastTypedText = event.target.value || '';
+        typedText = event.target.value || '';
     };
 
     const addVocabTrainerWritingInput = ({ observer, observerTargetNode, observerConfig }) => {
@@ -91,13 +91,15 @@ const initVocabTrainerAddWriting = () => {
             if (l2Text?.length > 0) {
                 // L2 text is visible. I.e. the DOM has been recreated and the input field with the user's typed text is replaced with a new input field.
                 // Add last typed text to the newly created input field, so that it can be checked against the L2 solution.
-                inputElem.value = lastTypedText;
+                inputElem.value = typedText;
 
-                if (lastTypedText === l2Text) {
+                if (typedText === l2Text) {
                     inputElem.classList.add('correct');
                 }
             } else {
-                // L2 is still hidden. Listen to blur when user stopped typing to store the typed text.
+                // L2 is still hidden. Reset stored typed text to not show any previous input.
+                typedText = '';
+                // Listen to blur when user stopped typing to store the typed text.
                 inputElem.addEventListener('blur', blurHandler);
             }
         });
