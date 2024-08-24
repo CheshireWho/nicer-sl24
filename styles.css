@@ -1,5 +1,5 @@
 /* improve colour contrast for orange CTAs */
-html body a.ctabutton {
+html body .ctabutton {
     color: #000077 !important;
 }
 
@@ -55,6 +55,10 @@ html body .verbzelletd {
 }
 
 /* input field added to daily "blitz" vocab trainer for optional writing exercise */
+html body input.writing-exercise {
+    /* if I get the form with button to work, this rule can be removed */
+    border-radius: 5px !important;
+}
 html body input.writing-exercise.correct {
     background: #b9f3aa;
 }

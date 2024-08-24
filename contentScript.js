@@ -65,6 +65,8 @@ const initVocabTrainerAddWriting = () => {
         const inputElem = document.createElement('input');
         inputElem.type = 'text';
         inputElem.autocapitalize = 'off';
+        inputElem.autocomplete = 'off';
+        inputElem.classList.add('eingabezeile1');
         inputElem.classList.add(inputClass);
 
         return inputElem;
