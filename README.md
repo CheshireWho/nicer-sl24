@@ -26,3 +26,4 @@ Nicer UI for sprachenlernen24
 - Increase font size.
 - Add links to verb trainer items that open Google Translate in a new tab with the text.
 - Add input field to daily "Blitz" vocab trainer to allow practicing writing.
+  - A button next to it triggers the blue lightbulb button directly. I.e. no need to manually hide the keyboard after typing and then click the blue button.
