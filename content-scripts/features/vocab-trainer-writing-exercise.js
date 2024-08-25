@@ -36,11 +36,7 @@ const initVocabTrainerAddWriting = () => {
         typedText = event.target.value || '';
     };
 
-    const addVocabTrainerWritingInput = ({ observer, observerTargetNode, observerConfig }) => {
-        // stop MutationObserver
-        // Keeping it running while manipulating the DOM would cause an infinite loop.
-        observer.disconnect();
-
+    const doTheActualThing = () => {
         // selects the vocabulary text container in the "blitz" trainer in the daily trainer
         const selectorDayTrainerSingleVocab = `#containerblitz .DivAutopilotText:not(:has(.${exerciseElemClass}))`;
         const elemsToExtend = document.querySelectorAll(`${selectorDayTrainerSingleVocab}`);
@@ -81,6 +77,15 @@ const initVocabTrainerAddWriting = () => {
                 inputElem.addEventListener('blur', blurHandler);
             }
         });
+    };
+
+    const addVocabTrainerWritingInput = ({ observer, observerTargetNode, observerConfig }) => {
+        // stop MutationObserver
+        // Keeping it running while manipulating the DOM would cause an infinite loop.
+        observer.disconnect();
+
+        // separate function so that e.g. early returns are possible but the MutationObserver is always restarted
+        doTheActualThing();
 
         // restart MutationObserver
         observer.observe(observerTargetNode, observerConfig);

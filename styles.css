@@ -89,3 +89,8 @@ html body div.writing-exercise input.correct {
         min-height: auto;
     }
 }
+
+/* hide demotivating and distracting section on the daily trainer end screen */
+html body .endseitenbox.hide-end-screen-section {
+    display: none;
+}
