@@ -2,6 +2,7 @@
  * Add a writing exercise to the daily "blitz" vocab trainer
  */
 const initVocabTrainerAddWriting = () => {
+    const textComparisonHelper = textComparison();
     const exerciseElemClass = 'writing-exercise';
     let typedText = '';
 
@@ -67,8 +68,15 @@ const initVocabTrainerAddWriting = () => {
                     cta.classList.add('hide');
                 }
 
-                if (typedText === l2Text) {
-                    inputElem.classList.add('correct');
+                // compare the typed text with the L2 translation
+                const comparisonResult = textComparisonHelper.compare(typedText, l2Text);
+
+                switch (comparisonResult) {
+                    case textComparisonHelper.resultCodes.IDENTICAL:
+                        inputElem.classList.add('correct');
+                        break;
+                    default:
+                        // do nothing
                 }
             } else {
                 // L2 is still hidden. Reset stored typed text to not show any previous input.
