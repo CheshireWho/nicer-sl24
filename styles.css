@@ -78,6 +78,12 @@ html body div.writing-exercise input:has(+ a.hide) {
 html body div.writing-exercise input.correct {
     background: #b9f3aa;
 }
+html body div.writing-exercise input.partially-correct {
+    background: #abddff;
+}
+html body div.writing-exercise input.incorrect {
+    background: #fcb2a4;
+}
 
 /* position the input field in the daily "blitz" vocab trainer better, so that the keyboard doesn't hide it */
 @media (max-height: 450px) and (min-width: 868px) {
