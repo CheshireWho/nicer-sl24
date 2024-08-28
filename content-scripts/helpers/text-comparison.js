@@ -38,16 +38,17 @@ const textComparison = () => {
      *                               lowercase/uppercase and the punctutation at the end (and only the end)
      *  resultCodes.NO_MATCH - otherwise
      * 
-     * @example partial match: compareSentences("Lovely day, isn't it?", "lovely day, isn't it")
-     * @example no match: compareSentences("Lovely day, isn't it?", "lovely day isnt it")
+     * @example partial match: compareSentences("lovely day, isn't it", "Lovely day, isn't it?")
+     * @example partial match: compareSentences("undskyld", "Undskyld, ...")
+     * @example no match: compareSentences("lovely day isnt it", "Lovely day, isn't it?")
      */
     function compareSentences(text1, text2) {
         // make first character lowercase
         const text1StartLowercase = text1.charAt(0).toUpperCase() + text1.slice(1);
         const text2StartLowercase = text2.charAt(0).toUpperCase() + text2.slice(1);
 
-        // remove any punctuation from the END (keep punctuation anywhere else)
-        const regexpEndPunctuation = /\p{Punctuation}*$/u;
+        // remove any punctuation and spacing from the END (keep punctuation anywhere else)
+        const regexpEndPunctuation = /(\p{Punctuation}|\s)*$/u;
         const text1StartLowercaseNoEndPunctuation = text1StartLowercase.replace(regexpEndPunctuation, '');
         const text2StartLowercaseNoEndPunctuation = text2StartLowercase.replace(regexpEndPunctuation, '');
 
