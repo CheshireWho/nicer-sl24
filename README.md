@@ -24,14 +24,16 @@ Nicer UI for sprachenlernen24
 - Dark font colour for the orange CTAs for better colour contrast.
 - More spacing at the bottom of the content, so that it can be scrolled properly.
 - Increase font size.
-- Add links to verb trainer items that open Google Translate in a new tab with the text.
+- Add links to the following elements that open Google Translate in a new tab with the text:
+  - verb trainer items
+  - conversation trainer within the daily trainer (the one that teaches single items and has a random image at the bottom)
 - Add input field to daily "Blitz" vocab trainer to allow practicing writing.
   - A button next to it triggers the blue lightbulb button directly. I.e. no need to manually hide the keyboard after typing and then click the blue button.
 - Hide several demotivating and irrelevant sections from the daily trainer end screen.
 
 ## Tests
 
-Each source file to be tested includes a commented line at the very bottom that assigns the file's content to `globalThis`. The test files can only access variables defined in the source files if those are available in `globalThis`.
+Each source file that has tests includes a commented line at the very bottom that assigns the file's content to `globalThis`. The test files can only access variables defined in the source files if those are available in `globalThis`.
 
 Uncomment that line.
 
