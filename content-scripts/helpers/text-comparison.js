@@ -72,6 +72,7 @@ const textComparison = () => {
      * 
      * @example
      * compare('dag, -en', 'dag, -en') // identical (perfect match)
+     * compare('de her', 'de her (pl.)') // identical (' (pl.)' at the end is ignored)
      * compare('fooäöü', 'fooäöübar') // noMatch (single word - must be identical to match, no partial match possible)
      * compare("lovely day, isn't it", "Lovely day, isn't it?") // partial match (sentence - first character case and
      *                                                             end punctuation ignored)
@@ -82,7 +83,12 @@ const textComparison = () => {
 
         // trim whitespace
         const text1 = textToCompare.trim();
-        const text2 = targetText.trim();
+        const targetTextTrimmed = targetText.trim();
+
+        // remove the literal string ' (pl.)' from the end of the text
+        // to cover e.g. compare('de her', 'de her (pl.)')
+        const regexpEndPlural = / \(pl\.\)$/;
+        const text2 = targetTextTrimmed.replace(regexpEndPlural, '');
 
         if (!text1 || !text2) return;
 
@@ -115,7 +121,7 @@ const textComparison = () => {
         //  - enkel,simpel
         //  - enkel / simpel
         //  - god(t)
-        //  - gammel(t), gamle (pl.)
+        //  - gammel(t), gamle
         //  - nat, -ten
         //  - nat,- ten
         //  - frokost, -en, middag, -en

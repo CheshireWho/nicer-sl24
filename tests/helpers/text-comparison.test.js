@@ -33,6 +33,21 @@ console.group('textComparison helper #compare');
             console.assert(compare('tak ', ' tak') === IDENTICAL);
             console.assert(compare('Hvorfra?', 'Hvorfra?') === IDENTICAL);
             console.assert(compare('dag, -en', 'dag, -en') === IDENTICAL);
+            console.assert(compare('at lave', 'at lave') === IDENTICAL);
+        }
+        console.groupEnd();
+    }
+    console.groupEnd();
+
+    console.group('when the target text ends with " (pl.)"');
+    {
+        console.group('and the text to compare does not');
+        {
+            console.group(`returns "${IDENTICAL}" if the strings are otherwise identical`);
+            {
+                console.assert(compare('de her', 'de her (pl.)') === IDENTICAL);
+            }
+            console.groupEnd();
         }
         console.groupEnd();
     }
