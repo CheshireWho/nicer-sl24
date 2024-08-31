@@ -41,9 +41,11 @@ html body #untenseiteHTML {
 
 /* the button in the daily trainer for new vocabulary to move it directly to the long term memory, i.e. not repeat in daily trainer */
 html body #Button_Richtig:has(> a > i.fa-stack > svg.svg-inline--fa.fa-trash-can-check) {
-    /* For now just highlight to test if the selector is correct. If correct, perhaps disable, or hide etc. */
-    border: 2px solid red;
-    /* opacity: 0.3; */
+    /* move it a bit out of the way to prevent muscle-memory clicking */
+    margin: 0 -120px 0 120px;
+}
+html body #Button_Richtig:has(> a > i.fa-stack > svg.svg-inline--fa.fa-trash-can-check) .svg-inline--fa.fa-square.fa-stack-2x.icon-stack-3x {
+    color: #ff5100 !important;
 }
 
 /* Google Translate links */
