@@ -93,8 +93,18 @@ const initCleanUpEndScreen = () => {
         // separate function so that e.g. early returns are possible but the MutationObserver is always restarted
         doTheActualThing();
 
-        // restart MutationObserver
-        observer.observe(observerTargetNode, observerConfig);
+        // `doTheActualThing()` might mutate the DOM. Thus, we want to restart the MutationObserver AFTER all the DOM updates
+        // have finished to prevent loops. To do so, we need two nested `requestAnimationFrame()` calls because this is called
+        // BEFORE the next repaint.
+        // I.e. this outer call fires before the next repaint
+        requestAnimationFrame(() => {
+            // fires before the _next_ next repaint
+            // ...which is effectively _after_ the next repaint
+            requestAnimationFrame(() => {
+                // restart MutationObserver
+                observer.observe(observerTargetNode, observerConfig);
+            });
+        });
     };
 
     return cleanUpEndScreen;
