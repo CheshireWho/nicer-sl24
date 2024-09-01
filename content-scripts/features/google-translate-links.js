@@ -46,10 +46,13 @@ const initGoogleTranslateLinkCreation = () => {
     };
 
     const doTheActualThing = () => {
-        // selects the L2 cells of the verb trainer that don't have a Google Translate link
+        // Selects the L2 cells of the verb trainer that don't have a Google Translate link.
+        // Select only if no GT link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
         const selectorVerbTrainer = `.verbzelletd:nth-child(2):not(:has(.${gTLinkClass}))`;
-        // selects the L2 element in the conversation trainer within the daily trainer (the one with single items and an image)
-        const selectorDailyConvoTrainer = '.Konvcontainer #KonvLoesung2';
+
+        // Selects the L2 element in the conversation trainer within the daily trainer (the one with single items and an image).
+        // Select only if no GT link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
+        const selectorDailyConvoTrainer = `.Konvcontainer #KonvLoesung2:not(:has(.${gTLinkClass}))`;
 
         const elemsToGetLink = document.querySelectorAll(`${selectorVerbTrainer}, ${selectorDailyConvoTrainer}`);
 
