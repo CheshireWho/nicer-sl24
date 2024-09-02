@@ -66,12 +66,43 @@ const textComparison = () => {
      *  resultCodes.NO_MATCH - if arr1 contains at least one item that's not part of arr2 (e.g. spelling mistake)
      * 
      * @example identical: compareArrays(['at spille', 'at lege'], ['at lege', 'at spille'])
+     * @example identical: compareArrays(['god', 'godt'], ['god(t)']) // splits all forms in parentheses
      * @example partial match: compareArrays(['bar', 'foo'], ['foo', 'bar', 'baz']) // all arr1 items are in arr2
+     * @example partial match: compareArrays(['gamle', 'gammelt'], ['gammel(t)', 'gamle'])
      * @example no match: compareArrays(['foo', 'bar', 'baz'], ['foo', 'bar']) // too many items in arr1
      */
     function compareArrays(arr1, arr2) {
+        const arr2Prepared = [];
+
+        arr2.forEach((targetItem) => {
+            // matches items made of letters with parentheses around letters at the very end, e.g. 'gammel(t)'
+            const regexpParentheses = /(\p{Letter}*)?\((\p{Letter}*)\)$/u;
+            const parenthesesMatches = targetItem.match(regexpParentheses);
+
+            if (parenthesesMatches) {
+                // The item has optional additional letters, e.g. 'gammel(t)'.
+                // To avoid having to type the parentheses and instead allow typing the actually correct phrases, split these
+                // items into all possible correct forms, i.e. 'gammel' and 'gammelt'.
+                // IMPORTANT: this means that typing the parenthses is no longer treated as being correct!
+
+                // add the main phrase, e.g. 'gammel' (i.e. the first matching group)
+                arr2Prepared.push(parenthesesMatches[1]);
+                // add the secondary phrase, e.g. 'gammelt'
+                arr2Prepared.push(`${parenthesesMatches[1]}${parenthesesMatches[2]}`);
+            } else {
+                arr2Prepared.push(targetItem);
+            }
+
+            // TODO more cases
+            //  - nat, -ten
+            //  - nat,- ten
+            //  - frokost, -en, middag, -en
+            //  - museum, -et   // needs to match 'museum', 'museet', 'museum, museet' (Dansk only)
+            //  - fersken, -en  // 'ferskenen' but with hint that it might be 'fersknen'. link to ordbog?? (Dansk only)
+        });
+
         const set1 = new Set(arr1);
-        const set2 = new Set(arr2);
+        const set2 = new Set(arr2Prepared);
 
         if (set1.size > set2.size) {
             // arr1 has more items than arr2, so something's incorrect
@@ -91,15 +122,6 @@ const textComparison = () => {
         }
 
         // TODO no match if any item of set1 is NOT in set2 (i.e. a typo / mistake)
-
-        // TODO more cases
-        //  - god(t)
-        //  - gammel(t), gamle
-        //  - nat, -ten
-        //  - nat,- ten
-        //  - frokost, -en, middag, -en
-        //  - museum, -et   // needs to match 'museum', 'museet', 'museum, museet' (Dansk only)
-        //  - fersken, -en  // 'ferskenen' but with hint that it might be 'fersknen'. link to ordbog?? (Dansk only)
     }
 
     /**
@@ -128,6 +150,8 @@ const textComparison = () => {
      *                                         has some more items)
      * compare('foo, bar, baz', 'foo, bar') // no match (list of phrases; text to compare has too many items, so at least one
      *                                         is incorrect)
+     * compare('gammel, gammelt, gamle', 'gammel(t), gamle (pl.)') // identical (list of phrases; different forms in parentheses are
+     *                                                                treated individually)
      */
     const compare = (textToCompare, targetText) => {
         if (typeof textToCompare !== 'string' || typeof targetText !== 'string') return;
