@@ -67,14 +67,16 @@ const textComparison = () => {
      * 
      * @example identical: compareArrays(['at spille', 'at lege'], ['at lege', 'at spille'])
      * @example identical: compareArrays(['god', 'godt'], ['god(t)']) // splits all forms in parentheses
+     * @example identical: compareArrays(['nat', 'natten'], ['nat, -ten']) // turns suffix into complete phrase
      * @example partial match: compareArrays(['bar', 'foo'], ['foo', 'bar', 'baz']) // all arr1 items are in arr2
      * @example partial match: compareArrays(['gamle', 'gammelt'], ['gammel(t)', 'gamle'])
+     * @example partial match: compareArrays(['frokosten', 'middag'], ['frokost', '-en', 'middag', '-en'])
      * @example no match: compareArrays(['foo', 'bar', 'baz'], ['foo', 'bar']) // too many items in arr1
      */
     function compareArrays(arr1, arr2) {
         const arr2Prepared = [];
 
-        arr2.forEach((targetItem) => {
+        arr2.forEach((targetItem, index) => {
             // matches items made of letters with parentheses around letters at the very end, e.g. 'gammel(t)'
             const regexpParentheses = /(\p{Letter}*)?\((\p{Letter}*)\)$/u;
             const parenthesesMatches = targetItem.match(regexpParentheses);
@@ -89,16 +91,28 @@ const textComparison = () => {
                 arr2Prepared.push(parenthesesMatches[1]);
                 // add the secondary phrase, e.g. 'gammelt'
                 arr2Prepared.push(`${parenthesesMatches[1]}${parenthesesMatches[2]}`);
-            } else {
-                arr2Prepared.push(targetItem);
+
+                // skip remaining code; this item has been handled
+                return;
             }
 
-            // TODO more cases
-            //  - nat, -ten
-            //  - nat,- ten
-            //  - frokost, -en, middag, -en
-            //  - museum, -et   // needs to match 'museum', 'museet', 'museum, museet' (Dansk only)
-            //  - fersken, -en  // 'ferskenen' but with hint that it might be 'fersknen'. link to ordbog?? (Dansk only)
+            // matches items starting with hyphen, optional spaces, and then letters, e.g. '-en', '- et'
+            const regexpHyphenAddition = /^-\s*(\p{Letter}*)$/u;
+            const hyphenAdditionMatches = targetItem.match(regexpHyphenAddition);
+
+            if (hyphenAdditionMatches && arr2[index - 1]) {
+                // The item is an additional suffix for the previous item, e.g. ['frokost', '-en']
+
+                // add the final form of the item and not just the suffix, e.g. 'frokosten'
+                const fullItem = `${arr2[index - 1]}${hyphenAdditionMatches[1]}`;
+                arr2Prepared.push(fullItem);
+
+                // skip remaining code; this item has been handled
+                return;
+            }
+
+            // default case
+            arr2Prepared.push(targetItem);
         });
 
         const set1 = new Set(arr1);
@@ -122,6 +136,7 @@ const textComparison = () => {
         }
 
         // TODO no match if any item of set1 is NOT in set2 (i.e. a typo / mistake)
+        //  test for a bit to see if there are no valid cases still unhandled
     }
 
     /**
@@ -152,6 +167,7 @@ const textComparison = () => {
      *                                         is incorrect)
      * compare('gammel, gammelt, gamle', 'gammel(t), gamle (pl.)') // identical (list of phrases; different forms in parentheses are
      *                                                                treated individually)
+     * compare('frokost, frokosten', 'frokost, -en') // identical (list of phrases; suffixes are handled as proper phrases)
      */
     const compare = (textToCompare, targetText) => {
         if (typeof textToCompare !== 'string' || typeof targetText !== 'string') return;
