@@ -62,6 +62,13 @@ html body .verbzelletd {
     vertical-align: baseline;
     text-align: right;
 }
+/* Google Translate links on the bilungual stories pages */
+html body .LANG1:has(.gt-link) {
+    display: flex;
+}
+html body .LANG1 .gt-link {
+    margin-left: auto;
+}
 
 /* exercise element with input field added to daily "blitz" vocab trainer for optional writing exercise */
 html body div.writing-exercise {

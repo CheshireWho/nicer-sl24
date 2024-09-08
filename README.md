@@ -27,6 +27,7 @@ Nicer UI for sprachenlernen24
 - Add links to the following elements that open Google Translate in a new tab with the text:
   - verb trainer items
   - conversation trainer within the daily trainer (the one that teaches single items and has a random image at the bottom)
+  - the bilingual stories
 - Add an input field to the daily "Blitz" vocab trainer to allow practicing writing.
   - A button next to it triggers the blue lightbulb button directly. I.e. no need to manually hide the keyboard after typing and then click the blue button.
   - The comparison of the typed text and the translation handles many cases (e.g. single phrases, sentences, lists of phrases...). In general, the spelling must be accurate. Otherwise, the algorithm tries to be lenient. E.g. if the target text is a list of phrases, writing only some of them and in any order is considered a partial match as long as the spelling is correct.

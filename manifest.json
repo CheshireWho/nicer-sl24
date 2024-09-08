@@ -5,7 +5,10 @@
     "manifest_version": 3,
     "content_scripts": [
       {
-        "matches": ["https://www.sprachenlernen24-onlinekurse.de/login/*"],
+        "matches": [
+          "https://www.sprachenlernen24-onlinekurse.de/login/*",
+          "https://www.sprachenlernen24.de/zweisprachige-geschichten-*"
+        ],
         "js": [
           "content-scripts/helpers/text-comparison.js",
           "content-scripts/features/google-translate-links.js",
