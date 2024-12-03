@@ -95,7 +95,7 @@ const initGoogleTranslateLinkCreation = () => {
     };
 
     const doTheActualThing = () => {
-        if (window.location.host.includes('sprachenlernen24-onlinekurse')) {
+        if (window.location.host.includes('sprachenlernen24-onlinekurs')) {
             // Selects the L2 cells of the verb trainer that don't have a Google Translate link.
             // Select only if no GT link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
             const selectorVerbTrainer = `.verbzelletd:nth-child(2):not(:has(.${gTLinkClass}))`;
