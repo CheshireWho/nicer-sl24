@@ -60,6 +60,10 @@ const initCleanUpEndScreen = () => {
         return sectionTextContent.includes('Markiere unsere Facebook-Seite');
     };
 
+    function isEarnMoneySection(sectionTextContent) {
+        return sectionTextContent.includes('Erhalte Provisionen für die Vermittlung');
+    };
+
     const doTheActualThing = () => {
         const endScreenSectionsSelector = '.endseitenbox';
         const endScreenSections = document.querySelectorAll(endScreenSectionsSelector);
@@ -81,7 +85,8 @@ const initCleanUpEndScreen = () => {
                 isBookSection(sectionTextContent) ||
                 isFollowOnSocialMediaSection(sectionTextContent) ||
                 isRateCourseSection(sectionTextContent) ||
-                isFollowOnFacebookSection(sectionTextContent)
+                isFollowOnFacebookSection(sectionTextContent) ||
+                isEarnMoneySection(sectionTextContent)
             ) {
                 section.classList.add('hide-end-screen-section');
             }
