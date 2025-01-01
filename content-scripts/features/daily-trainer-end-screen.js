@@ -45,7 +45,7 @@ const initCleanUpEndScreen = () => {
     };
 
     function isBookSection(sectionTextContent) {
-        return sectionTextContent.includes('Das Buch zum Sprachkurs:');
+        return sectionTextContent.includes('Das Buch zum Sprachkurs:') || sectionTextContent.includes('Neues Buch:');
     };
 
     function isFollowOnSocialMediaSection(sectionTextContent) {
