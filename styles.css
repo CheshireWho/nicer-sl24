@@ -48,6 +48,15 @@ html body #Button_Richtig:has(> a > i.fa-stack > svg.svg-inline--fa.fa-trash-can
     color: #e3c5e9 !important;
 }
 
+/* conversation trainer (and potentially other tables) in the daily trainer */
+html body td.siebentd.easysieben {
+    padding: 8px;
+}
+/* should hopefully always select the grey cell and improve the colour contrast */
+html body td.siebentd.easysieben[id^="SiebenB"] {
+    background-color: #7c7b7b;
+}
+
 /* Google Translate links */
 html body .gt-link {
     display: inline-block;
