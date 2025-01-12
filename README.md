@@ -24,9 +24,11 @@ Nicer UI for sprachenlernen24
 - Dark font colour for the orange CTAs for better colour contrast.
 - More spacing at the bottom of the content, so that it can be scrolled properly.
 - Increase font size.
+- Some padding and improved colour contrast in the table trainers within the daily trainer.
 - Add links to the following elements that open Google Translate in a new tab with the text:
   - verb trainer items
   - conversation trainer within the daily trainer (the one that teaches single items and has a random image at the bottom)
+  - table trainers within the daily trainer (e.g. the conversion trainer with multiple items)
   - the bilingual stories:
     - each sentence of any story
     - the heading of each story: the entire story is concatenated and passed to Google Translate.
@@ -34,7 +36,7 @@ Nicer UI for sprachenlernen24
   - A button next to it triggers the blue lightbulb button directly. I.e. no need to manually hide the keyboard after typing and then click the blue button.
   - The comparison of the typed text and the translation handles many cases (e.g. single phrases, sentences, lists of phrases...). In general, the spelling must be accurate. Otherwise, the algorithm tries to be lenient. E.g. if the target text is a list of phrases, writing only some of them and in any order is considered a partial match as long as the spelling is correct.
 - Hide several demotivating and irrelevant sections from the daily trainer end screen.
-- Change colour of the button in the daily trainer for new vocabulary to be added directly to the long term mmemory section and move it a bit out of the way. This is to prevent accidental clicking it due to its similiarity to the regular vocab repetition button.
+- Change colour of the button in the daily trainer for new vocabulary to be added directly to the long term memory section and move it a bit out of the way. This is to prevent accidental clicking it due to its similiarity to the regular vocab repetition button.
 
 ## Tests
 
