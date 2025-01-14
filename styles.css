@@ -1,9 +1,13 @@
-/* improve colour contrast for orange CTAs */
+/**
+ * improve colour contrast for orange CTAs
+ */
 html body .ctabutton {
     color: #000077 !important;
 }
 
-/* increase font size */
+/**
+ * increase font size
+ */
 html body {
     font-size: 18px;
 }
@@ -18,7 +22,9 @@ html body table td {
     font-size: 1rem;
 }
 
-/* allow scrolling to the end */
+/**
+ * allow scrolling to the end
+ */
 html body #containerwithmenu,
 html body #containertransparentglobal,
 html body #containertransparent,
@@ -31,7 +37,9 @@ html body #untenseiteHTML {
     max-height: none !important;
 }
 
-/* fix horizontal widths */
+/**
+ * fix horizontal widths
+ */
 @media screen and (min-width: 768px) and (max-width: 1400px) {
     html body .overlayInhaltUeb,
     html body .overlayBox7 {
@@ -39,7 +47,9 @@ html body #untenseiteHTML {
     }
 }
 
-/* the button in the daily trainer for new vocabulary to move it directly to the long term memory, i.e. not repeat in daily trainer */
+/**
+ * the button in the daily trainer for new vocabulary to move it directly to the long term memory, i.e. not repeat in daily trainer
+ */
 html body #Button_Richtig:has(> a > i.fa-stack > svg.svg-inline--fa.fa-trash-can-check) {
     /* move it a bit out of the way to prevent muscle-memory clicking */
     margin: 0 -120px 0 120px;
@@ -48,7 +58,9 @@ html body #Button_Richtig:has(> a > i.fa-stack > svg.svg-inline--fa.fa-trash-can
     color: #e3c5e9 !important;
 }
 
-/* Google Translate links */
+/**
+ * Google Translate links
+ */
 html body .gt-link {
     display: inline-block;
     color: #1967d2 !important;
@@ -58,11 +70,14 @@ html body .gt-link {
     padding: 2px 8px;
     margin: 4px 0 2px;
 }
+
+/* verb trainer */
 html body .verbzelletd {
     vertical-align: baseline;
     text-align: right;
 }
-/* Google Translate links on the bilungual stories pages */
+
+/* bilungual stories pages */
 html body .LANG1:has(.gt-link),
 html body .TITLES .TITLESINNER:has(.gt-link) {
     display: flex;
@@ -73,7 +88,7 @@ html body .TITLES .TITLESINNER .gt-link {
     align-self: center;
 }
 
-/* conversation trainer (and potentially other tables) in the daily trainer */
+/* several tables, e.g. conversation trainer in the daily trainer, list of not known words of the day etc. */
 html body td.siebentd.easysieben {
     padding: 8px;
 }
@@ -90,7 +105,9 @@ html body td.siebentd ~ td:has(.gt-link) .gt-link {
     margin-left: 4px;
 }
 
-/* exercise element with input field added to daily "blitz" vocab trainer for optional writing exercise */
+/**
+ * exercise element with input field added to daily "blitz" vocab trainer for optional writing exercise
+ */
 html body div.writing-exercise {
     text-align: center;
 }
@@ -132,7 +149,9 @@ html body div.writing-exercise input.incorrect {
     }
 }
 
-/* hide demotivating and distracting section on the daily trainer end screen */
+/**
+ * hide demotivating and distracting section on the daily trainer end screen
+ */
 html body .endseitenbox.hide-end-screen-section {
     display: none;
 }
