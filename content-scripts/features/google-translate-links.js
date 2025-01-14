@@ -42,7 +42,7 @@ const initGoogleTranslateLinkCreation = () => {
             textToTranslate = Link.parentElement.childNodes[0].textContent;
         } else if (Link?.classList.contains('daily-sieben-trainer')) {
             // this link is one item in the daily trainer's table trainer (e.g. conversion trainer with multiple items)
-            textToTranslate = Link.previousElementSibling?.textContent;
+            textToTranslate = Link.closest('td').previousElementSibling?.textContent;
         } else if (Link?.classList.contains('verb-trainer')) {
             // this link is in the verb trainer
             textToTranslate = Link?.parentElement.textContent?.trim();
