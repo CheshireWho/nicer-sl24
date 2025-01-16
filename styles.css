@@ -99,17 +99,24 @@ html body .TITLES .TITLESINNER .gt-link {
 html body td.siebentd.easysieben {
     padding: 8px;
 }
-/* should select the grey cell and improve the colour contrast */
-html body td.siebentd.easysieben:nth-child(2) {
-    background-color: #7c4597 !important;
-}
-/* should select the cell with the audio button and the Google Translate link */
+/* select the cell with the audio button and the Google Translate link */
 html body td.siebentd ~ td:has(.gt-link) {
     /* This pushes the GT link onto the same line but also outside the table. Tablet should hopefully always have enough space. */
     white-space: nowrap;
 }
 html body td.siebentd ~ td:has(.gt-link) .gt-link {
     margin-left: 4px;
+}
+/* select the grey cells and improve the colour contrast */
+html body td.siebentd.easysieben[style*="background-color:#B4B4B4;"],
+html body td.siebentd.easysieben[style*="background-color: rgb(180, 180, 180);"] {
+    background-color: #7c4597 !important;
+}
+/* Select the grey cells again but only the ones with the "hidden" text. The space is important to not match "background-color". */
+html body td.siebentd.easysieben[style*=" color:#B4B4B4;"],
+html body td.siebentd.easysieben[style*=" color: rgb(180, 180, 180);"] {
+    /* the text is "hidden" by having the same colour as the background */
+    color: #7c4597 !important;
 }
 
 /**
