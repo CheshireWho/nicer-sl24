@@ -169,3 +169,19 @@ html body div.writing-exercise input.incorrect {
 html body .endseitenbox.hide-end-screen-section {
     display: none;
 }
+
+/**
+ * sort some languages to the top on the language course selection page after the login
+ */
+html body div:has(> #gelbbox) {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+html body div:has(> #gelbbox) > br {
+    display: none;
+}
+html body div:has(> #gelbbox) #gelbbox:has(img[src*="daenisch"]),
+html body div:has(> #gelbbox) #gelbbox:has(img[src*="schwedisch"]) {
+    order: -1;
+}
