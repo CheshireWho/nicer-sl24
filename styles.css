@@ -2,24 +2,24 @@
  * improve colour contrast for orange CTAs
  */
 html body .ctabutton {
-    color: #000077 !important;
+  color: #000077 !important;
 }
 
 /**
  * increase font size
  */
 html body {
-    font-size: 18px;
+  font-size: 18px;
 }
 html body #normaltext,
 html body .normaltext {
-    font-size: 18px;
+  font-size: 18px;
 }
 html body .menulink {
-    font-size: 16px;
+  font-size: 16px;
 }
 html body table td {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 /**
@@ -31,157 +31,172 @@ html body #containertransparent,
 html body #containerintransparent,
 html body #Gesamtmenu,
 html body #OverlayMainboxID {
-    padding-bottom: 150px;
+  padding-bottom: 150px;
 }
 html body #untenseiteHTML {
-    max-height: none !important;
+  max-height: none !important;
 }
 
 /**
  * fix horizontal widths
  */
 @media screen and (min-width: 768px) and (max-width: 1400px) {
-    html body .overlayInhaltUeb,
-    html body .overlayBox7 {
-        width: auto;
-    }
+  html body .overlayInhaltUeb,
+  html body .overlayBox7 {
+    width: auto;
+  }
 }
 
 /**
  * the button in the daily trainer for new vocabulary to move it directly to the long term memory, i.e. not repeat in daily trainer
  */
 html body #Button_Richtig:has(> a > i.fa-stack > svg.svg-inline--fa.fa-trash-can-check) {
-    /* move it a bit out of the way to prevent muscle-memory clicking */
-    margin: 0 -120px 0 120px;
+  /* move it a bit out of the way to prevent muscle-memory clicking */
+  margin: 0 -120px 0 120px;
 }
-html body #Button_Richtig:has(> a > i.fa-stack > svg.svg-inline--fa.fa-trash-can-check) .svg-inline--fa.fa-square.fa-stack-2x.icon-stack-3x {
-    color: #e3c5e9 !important;
+html
+  body
+  #Button_Richtig:has(> a > i.fa-stack > svg.svg-inline--fa.fa-trash-can-check)
+  .svg-inline--fa.fa-square.fa-stack-2x.icon-stack-3x {
+  color: #e3c5e9 !important;
 }
 
 /**
  * Google Translate links
  */
 html body .gt-link {
-    display: inline-block;
-    color: #1967d2 !important;
-    background: #4285f41f;
-    border: 1px solid #1967d2;
-    border-radius: 6px;
-    padding: 2px 8px;
-    margin: 4px 0 2px;
+  display: inline-block;
+  color: #1967d2 !important;
+  background: #4285f41f;
+  border: 1px solid #1967d2;
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin: 4px 0 2px;
 }
 
 /* verb trainer */
 html body .verbzelletd {
-    vertical-align: baseline;
-    text-align: right;
+  vertical-align: baseline;
+  text-align: right;
 }
 html body .verbzelletd .verbzelle1 {
-    width: auto;
-    display: inline-flex;
+  width: auto;
+  display: inline-flex;
 }
 html body .verbzelletd .gt-link {
-    margin-left: 4px;
+  margin-left: 4px;
 }
 
 /* bilungual stories pages */
 html body .LANG1:has(.gt-link),
 html body .TITLES .TITLESINNER:has(.gt-link) {
-    display: flex;
+  display: flex;
 }
 html body .LANG1 .gt-link,
 html body .TITLES .TITLESINNER .gt-link {
-    margin-left: auto;
-    align-self: center;
+  margin-left: auto;
+  align-self: center;
 }
 
 /* several tables, e.g. conversation trainer in the daily trainer, list of not known words of the day etc. */
 html body td.siebentd.easysieben {
-    padding: 8px;
+  padding: 8px;
 }
 /* select the cell with the audio button and the Google Translate link */
 html body td.siebentd ~ td:has(.gt-link) {
-    /* This pushes the GT link onto the same line but also outside the table. Tablet should hopefully always have enough space. */
-    white-space: nowrap;
+  /* This pushes the GT link onto the same line but also outside the table. Tablet should hopefully always have enough space. */
+  white-space: nowrap;
 }
 html body td.siebentd ~ td:has(.gt-link) .gt-link {
-    margin-left: 4px;
+  margin-left: 4px;
 }
 /* select the grey cells and improve the colour contrast */
-html body td.siebentd.easysieben[style*="background-color:#B4B4B4;"],
-html body td.siebentd.easysieben[style*="background-color: rgb(180, 180, 180);"] {
-    background-color: #7c4597 !important;
+html body td.siebentd.easysieben[style*='background-color:#B4B4B4;'],
+html body td.siebentd.easysieben[style*='background-color: rgb(180, 180, 180);'] {
+  background-color: #7c4597 !important;
 }
 /* Select the grey cells again but only the ones with the "hidden" text. The space is important to not match "background-color". */
-html body td.siebentd.easysieben[style*=" color:#B4B4B4;"],
-html body td.siebentd.easysieben[style*=" color: rgb(180, 180, 180);"] {
-    /* the text is "hidden" by having the same colour as the background */
-    color: #7c4597 !important;
+html body td.siebentd.easysieben[style*=' color:#B4B4B4;'],
+html body td.siebentd.easysieben[style*=' color: rgb(180, 180, 180);'] {
+  /* the text is "hidden" by having the same colour as the background */
+  color: #7c4597 !important;
 }
 
 /**
  * exercise element with input field added to daily "blitz" vocab trainer for optional writing exercise
  */
 html body div.writing-exercise {
-    text-align: center;
+  text-align: center;
 }
 html body div.writing-exercise a {
-    margin: 0 !important;
-    display: inline-flex;
-    align-items: center;
-    float: none !important;
+  margin: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  float: none !important;
 }
 html body .writing-exercise a.hide {
-    display: none;
+  display: none;
 }
 html body div.writing-exercise input {
-    float: none !important;
-    text-align: center;
+  float: none !important;
+  text-align: center;
 }
 html body div.writing-exercise input:has(+ a.hide) {
-    /* the cta is hidden, i.e. the L2 text is visible */
-    border-radius: 5px !important;
+  /* the cta is hidden, i.e. the L2 text is visible */
+  border-radius: 5px !important;
 }
 html body div.writing-exercise input.correct {
-    background: #c4fcb2;
+  background: #c4fcb2;
 }
 html body div.writing-exercise input.partially-correct {
-    background: #b5f1ff;
+  background: #b5f1ff;
 }
 html body div.writing-exercise input.incorrect {
-    background: #fcb2a4;
+  background: #fcb2a4;
 }
 
 /* position the input field in the daily "blitz" vocab trainer better, so that the keyboard doesn't hide it */
 @media (max-height: 450px) and (min-width: 868px) {
-    html body #containervok {
-        margin: 10px 0 0 0 !important;
-    }
-    html body .DivAutopilotZusatzicons {
-        height: auto;
-        min-height: auto;
-    }
+  html body #containervok {
+    margin: 10px 0 0 0 !important;
+  }
+  html body .DivAutopilotZusatzicons {
+    height: auto;
+    min-height: auto;
+  }
 }
 
 /**
  * hide demotivating and distracting section on the daily trainer end screen
  */
 html body .endseitenbox.hide-end-screen-section {
-    display: none;
+  display: none;
 }
 
 /**
  * sort some languages to the top on the language course selection page after the login
  */
 html body div:has(> #gelbbox) {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 html body div:has(> #gelbbox) > br {
-    display: none;
+  display: none;
 }
-html body div:has(> #gelbbox) #gelbbox:has(img[src*="daenisch"]),
-html body div:has(> #gelbbox) #gelbbox:has(img[src*="schwedisch"]) {
-    order: -1;
+html body div:has(> #gelbbox) #gelbbox:has(img[src*='daenisch']),
+html body div:has(> #gelbbox) #gelbbox:has(img[src*='schwedisch']) {
+  order: -1;
+}
+
+/**
+ * hide some creepy images, like the image for "creepy" :D
+ */
+html body img:is([src*='/grafik450/2440.webp'], [src*='/grafik450/2444.webp']) {
+  border: 10px solid #00d9ff;
+
+  -webkit-mask: linear-gradient(#000 0 0), linear-gradient(#000 0 0) content-box;
+  mask: linear-gradient(#000 0 0), linear-gradient(#000 0 0) content-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
