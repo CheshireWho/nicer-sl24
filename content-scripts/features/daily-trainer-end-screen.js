@@ -61,7 +61,7 @@ const initCleanUpEndScreen = () => {
     };
 
     function isEarnMoneySection(sectionTextContent) {
-        return sectionTextContent.includes('Erhalte Provisionen für die Vermittlung');
+        return sectionTextContent.includes('Erhalte Provisionen für die Vermittlung') || sectionTextContent.includes('Verdiene Geld');
     };
 
     const doTheActualThing = () => {
