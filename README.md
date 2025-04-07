@@ -30,6 +30,7 @@ Nicer UI for sprachenlernen24
 - Add input field to daily "Blitz" vocab trainer to allow practicing writing.
   - A button next to it triggers the blue lightbulb button directly. I.e. no need to manually hide the keyboard after typing and then click the blue button.
 - Hide several demotivating and irrelevant sections from the daily trainer end screen.
+- Change colour of the button in the daily trainer for new vocabulary to be added directly to the long term mmemory section and move it a bit out of the way. This is to prevent accidental clicking it due to its similiarity to the regular vocab repetition button.
 
 ## Tests
 
