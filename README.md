@@ -28,3 +28,11 @@ Nicer UI for sprachenlernen24
 - Add input field to daily "Blitz" vocab trainer to allow practicing writing.
   - A button next to it triggers the blue lightbulb button directly. I.e. no need to manually hide the keyboard after typing and then click the blue button.
 - Hide several demotivating and irrelevant sections from the daily trainer end screen.
+
+## Tests
+
+Each source file to be tested includes a commented line at the very bottom that assigns the file's content to `globalThis`. The test files can only access variables defined in the source files if those are available in `globalThis`.
+
+Uncomment that line.
+
+Run `node .\tests\index.js`.

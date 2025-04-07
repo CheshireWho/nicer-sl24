@@ -129,3 +129,6 @@ const textComparison = () => {
         compare
     };
 };
+
+// uncomment before running tests
+// globalThis.textComparison = textComparison;
