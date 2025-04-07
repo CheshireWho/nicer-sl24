@@ -54,13 +54,28 @@ html body .verbzelletd {
     text-align: right;
 }
 
-/* input field added to daily "blitz" vocab trainer for optional writing exercise */
-html body input.writing-exercise {
-    /* if I get the form with button to work, these rules can be removed */
-    border-radius: 5px !important;
+/* exercise element with input field added to daily "blitz" vocab trainer for optional writing exercise */
+html body div.writing-exercise {
+    text-align: center;
+}
+html body div.writing-exercise a {
+    margin: 0 !important;
+    display: inline-flex;
+    align-items: center;
     float: none !important;
 }
-html body input.writing-exercise.correct {
+html body .writing-exercise a.hide {
+    display: none;
+}
+html body div.writing-exercise input {
+    float: none !important;
+    text-align: center;
+}
+html body div.writing-exercise input:has(+ a.hide) {
+    /* the cta is hidden, i.e. the L2 text is visible */
+    border-radius: 5px !important;
+}
+html body div.writing-exercise input.correct {
     background: #b9f3aa;
 }
 
