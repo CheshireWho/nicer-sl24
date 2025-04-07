@@ -23,7 +23,7 @@ const initCleanUpEndScreen = () => {
     };
 
     function isPointsPerVocabSection(sectionTextContent) {
-        return sectionTextContent.includes('Zusatzpunkte pro Vokabel');
+        return sectionTextContent.includes('Punkte pro Vokabel:');
     };
 
     function improveRedeemRewardsSection(section) {
@@ -38,6 +38,14 @@ const initCleanUpEndScreen = () => {
                 }
             });
         }
+    };
+
+    function isFacebookCommunitySection(sectionTextContent) {
+        return sectionTextContent.includes('Die Lerngemeinschaft auf Facebook');
+    };
+
+    function isBookSection(sectionTextContent) {
+        return sectionTextContent.includes('Das Buch zum Sprachkurs:');
     };
 
     const doTheActualThing = () => {
@@ -56,7 +64,9 @@ const initCleanUpEndScreen = () => {
                 isBetterThanOthersSection(sectionTextContent) ||
                 isBadgesForDaysInRowSection(sectionTextContent) ||
                 isBadgesForVocabAmountSection(sectionTextContent) ||
-                isPointsPerVocabSection(sectionTextContent)
+                isPointsPerVocabSection(sectionTextContent) ||
+                isFacebookCommunitySection(sectionTextContent) ||
+                isBookSection(sectionTextContent)
             ) {
                 section.classList.add('hide-end-screen-section');
             }
