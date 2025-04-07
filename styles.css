@@ -45,7 +45,7 @@ html body #Button_Richtig:has(> a > i.fa-stack > svg.svg-inline--fa.fa-trash-can
     margin: 0 -120px 0 120px;
 }
 html body #Button_Richtig:has(> a > i.fa-stack > svg.svg-inline--fa.fa-trash-can-check) .svg-inline--fa.fa-square.fa-stack-2x.icon-stack-3x {
-    color: #ff5100 !important;
+    color: #e3c5e9 !important;
 }
 
 /* Google Translate links */
