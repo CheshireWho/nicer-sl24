@@ -63,11 +63,14 @@ html body .verbzelletd {
     text-align: right;
 }
 /* Google Translate links on the bilungual stories pages */
-html body .LANG1:has(.gt-link) {
+html body .LANG1:has(.gt-link),
+html body .TITLES .TITLESINNER:has(.gt-link) {
     display: flex;
 }
-html body .LANG1 .gt-link {
+html body .LANG1 .gt-link,
+html body .TITLES .TITLESINNER .gt-link {
     margin-left: auto;
+    align-self: center;
 }
 
 /* exercise element with input field added to daily "blitz" vocab trainer for optional writing exercise */

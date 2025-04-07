@@ -46,6 +46,33 @@ const initGoogleTranslateLinkCreation = () => {
         } else if (Link?.classList.contains('bilingual-stories-single-item')) {
             // this link is a single item in the bilingual stories
             textToTranslate = Link?.parentElement.querySelector('.div_td:nth-child(2)')?.textContent?.trim();
+        } else if (Link?.classList.contains('bilingual-stories-story-heading-item')) {
+            // this link is a story heading item in the bilingual stories
+            const sentences = [];
+
+            // add the story heading L2 text for the GT link
+            const headingL2Text = `${Link?.parentElement.querySelector('.LANGX1')?.textContent?.trim()}.`;
+            sentences.push(headingL2Text);
+
+            let currentElement = Link?.closest('.TITLES');
+
+            // loop only as long as there are next sibling elements
+            while (currentElement.nextElementSibling) {
+                currentElement = currentElement.nextElementSibling;
+
+                // if the next sibling element is not the L1 or L2 text for this story, break the loop, i.e. story ending reached
+                if (!currentElement.classList.contains('LANG1') && !currentElement.classList.contains('LANG2')) {
+                    break;
+                }
+
+                if (currentElement.classList.contains('LANG1')) {
+                    // This is an L2 text of this specific story. Add it to the GT link.
+                    const l2Text = currentElement.querySelector('.div_td:nth-child(2)')?.textContent?.trim();
+                    sentences.push(l2Text);
+                }
+            }
+
+            textToTranslate = sentences.join(' ');
         }
         
         if (Link && textToTranslate) {
@@ -79,9 +106,15 @@ const initGoogleTranslateLinkCreation = () => {
             const selectorDailyConvoTrainer = `.Konvcontainer #KonvLoesung2:not(:has(.${gTLinkClass}))`;
             appendGtLink(selectorDailyConvoTrainer, 'daily-convo-trainer');
         } else if (window.location.href.includes('zweisprachige-geschichten')) {
+            // Selects the single sentences in bilingual stories.
+            // Select only if no GT link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
             const selectorBilingualStoriesSingleL2Item = `.LANG1:not(:has(.${gTLinkClass}))`;
             appendGtLink(selectorBilingualStoriesSingleL2Item, 'bilingual-stories-single-item');
 
+            // Selects the story heading in bilingual stories.
+            // Select only if no GT link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
+            const selectorBilingualStoriesStoryHeadingItem = `.TITLES .TITLESINNER:not(:has(.${gTLinkClass}))`;
+            appendGtLink(selectorBilingualStoriesStoryHeadingItem, 'bilingual-stories-story-heading-item');
         }
     };
 
