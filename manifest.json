@@ -1,0 +1,13 @@
+{
+    "name": "Nicer sl24",
+    "description": "Nicer UI for sprachenlernen24",
+    "version": "1.0",
+    "manifest_version": 3,
+    "content_scripts": [
+      {
+        "matches": ["https://www.sprachenlernen24-onlinekurse.de/login/*"],
+        "js": ["contentScript.js"],
+        "css": ["styles.css"]
+      }
+    ]
+  }
