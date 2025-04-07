@@ -104,5 +104,29 @@ console.group('textComparison helper #compare');
         console.groupEnd();
     }
     console.groupEnd();
+
+    console.group('when the target text is a list of one or more phrases');
+    {
+        console.group(`returns "${IDENTICAL}" if both texts' lists contain the same phrases`);
+        {
+            console.assert(compare("at spille, at lege", "at lege, at spille") === IDENTICAL);
+            console.assert(compare("at spille, at lege", "at lege,at spille") === IDENTICAL);
+            console.assert(compare("at spille, at lege", "at lege / at spille") === IDENTICAL);
+        }
+        console.groupEnd();
+
+        console.group(`returns "${NO_MATCH}" if the typed text contains more phrases than the target text`);
+        {
+            console.assert(compare("foo, bar, baz", "foo, bar") === NO_MATCH);
+        }
+        console.groupEnd();
+
+        console.group(`returns "${PARTIAL_MATCH}" if the typed text's phrases are part of the target text, but the target text has some additional phrases`);
+        {
+            console.assert(compare("bar, foo", "foo, bar, baz") === PARTIAL_MATCH);
+        }
+        console.groupEnd();
+    }
+    console.groupEnd();
 }
 console.groupEnd();

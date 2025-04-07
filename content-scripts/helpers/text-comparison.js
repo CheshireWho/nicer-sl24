@@ -34,8 +34,8 @@ const textComparison = () => {
 
     /**
      * @returns
-     *   resultCodes.PARTIAL_MATCH - if the only potential differences between text1 and text2 are the first character being
-     *                               lowercase/uppercase and the punctutation at the end (and only the end)
+     *  resultCodes.PARTIAL_MATCH - if the only potential differences between text1 and text2 are the first character being
+     *                              lowercase/uppercase and the punctutation at the end (and only the end)
      *  resultCodes.NO_MATCH - otherwise
      * 
      * @example partial match: compareSentences("lovely day, isn't it", "Lovely day, isn't it?")
@@ -58,6 +58,51 @@ const textComparison = () => {
     }
 
     /**
+     * @param {Array} arr1 - array items to check
+     * @param {Array} arr2 - target array items to compare the first one against
+     * @returns
+     *  resultCodes.IDENTICAL - if arr1 and arr2 contain the exact same items, but the order might be different
+     *  resultCodes.PARTIAL_MATCH - if all arr1 items are part of arr2, but arr2 has more items
+     *  resultCodes.NO_MATCH - if arr1 contains at least one item that's not part of arr2 (e.g. spelling mistake)
+     * 
+     * @example identical: compareArrays(['at spille', 'at lege'], ['at lege', 'at spille'])
+     * @example partial match: compareArrays(['bar', 'foo'], ['foo', 'bar', 'baz']) // all arr1 items are in arr2
+     * @example no match: compareArrays(['foo', 'bar', 'baz'], ['foo', 'bar']) // too many items in arr1
+     */
+    function compareArrays(arr1, arr2) {
+        const set1 = new Set(arr1);
+        const set2 = new Set(arr2);
+
+        if (set1.size > set2.size) {
+            // arr1 has more items than arr2, so something's incorrect
+            return resultCodes.NO_MATCH;
+        }
+
+        const intersection = set1.intersection(set2);
+
+        if (intersection.size > 0 && intersection.size === set1.size && intersection.size === set2.size) {
+            // arr1 and arr2 are identical, only the order might be different
+            return resultCodes.IDENTICAL;
+        }
+
+        if (set1.isSubsetOf(set2)) {
+            // all items of set1 are in set2; i.e. all set1 items are spelled correctly but set2 has some more items
+            return resultCodes.PARTIAL_MATCH;
+        }
+
+        // TODO no match if any item of set1 is NOT in set2 (i.e. a typo / mistake)
+
+        // TODO more cases
+        //  - god(t)
+        //  - gammel(t), gamle
+        //  - nat, -ten
+        //  - nat,- ten
+        //  - frokost, -en, middag, -en
+        //  - museum, -et   // needs to match 'museum', 'museet', 'museum, museet' (Dansk only)
+        //  - fersken, -en  // 'ferskenen' but with hint that it might be 'fersknen'. link to ordbog?? (Dansk only)
+    }
+
+    /**
      * Compare a string against another.
      * 
      * Meant for checking if a user typed string matches the translation.
@@ -77,6 +122,12 @@ const textComparison = () => {
      * compare("lovely day, isn't it", "Lovely day, isn't it?") // partial match (sentence - first character case and
      *                                                             end punctuation ignored)
      * compare("lovely day isnt it", "Lovely day, isn't it?") // no match (sentence)
+     * compare('at spille, at lege', 'at lege, at spille') // identical (list of phrases, items are complete match)
+     * compare('at spille, at lege', 'at lege / at spille') // identical (list of phrases, items are complete match)
+     * compare('bar, foo', 'foo, bar, baz') // partial match (list of phrases; all items to compare are correct, but the target text
+     *                                         has some more items)
+     * compare('foo, bar, baz', 'foo, bar') // no match (list of phrases; text to compare has too many items, so at least one
+     *                                         is incorrect)
      */
     const compare = (textToCompare, targetText) => {
         if (typeof textToCompare !== 'string' || typeof targetText !== 'string') return;
@@ -116,17 +167,15 @@ const textComparison = () => {
             return compareSentences(text1, text2);
         }
 
-        // TODO the rest are 'lists' of words
-        //  - enkelt, simpel
-        //  - enkel,simpel
-        //  - enkel / simpel
-        //  - god(t)
-        //  - gammel(t), gamle
-        //  - nat, -ten
-        //  - nat,- ten
-        //  - frokost, -en, middag, -en
-        //  - museum, -et   // needs to match 'museum', 'museet', 'museum, museet' (Dansk only)
-        //  - fersken, -en  // 'ferskenen' but with hint that it might be 'fersknen'. link to ordbog?? (Dansk only)
+        // The strings are now lists of phrases with one or more items. So split them to compare the items.
+        // e.g. 'foo, bar', 'foo,bar' --> ['foo', 'bar']
+        const text1Pieces = text1.split(',').map((item) => item.trim());
+        // some target texts use '/' as delimiter instead of ',', e.g. 'foo, bar', 'foo,bar', 'foo / bar' --> ['foo', 'bar']
+        const text2Pieces = text2.split(/[,/]/).map((item) => item.trim());
+
+        if (text1Pieces.length > 0 && text2Pieces.length > 0) {
+            return compareArrays(text1Pieces, text2Pieces);
+        }
 
         return;
     };
@@ -137,5 +186,5 @@ const textComparison = () => {
     };
 };
 
-// uncomment before running tests
+// uncomment before running the tests
 // globalThis.textComparison = textComparison;
