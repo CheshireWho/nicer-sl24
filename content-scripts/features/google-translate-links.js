@@ -30,7 +30,15 @@ const initGoogleTranslateLinkCreation = () => {
 
     const gTClickHandler = (event) => {
         const Link = event.target?.closest(`.${gTLinkClass}`);
-        const textToTranslate = Link?.parentElement.textContent?.trim();
+        let textToTranslate;
+
+        if (Link?.parentElement.id === 'KonvLoesung2') {
+            // this link is in the daily trainer's conversation trainer
+            textToTranslate = Link.parentElement.childNodes[0].textContent;
+        } else {
+            // this link is in the verb trainer
+            textToTranslate = Link?.parentElement.textContent?.trim();
+        }
         
         if (Link && textToTranslate) {
             Link.href = `https://translate.google.com/?sl=${gTSourceLanguage}&tl=${gTTargetLanguage}&op=translate&text=${encodeURI(textToTranslate)}`;
@@ -40,7 +48,10 @@ const initGoogleTranslateLinkCreation = () => {
     const doTheActualThing = () => {
         // selects the L2 cells of the verb trainer that don't have a Google Translate link
         const selectorVerbTrainer = `.verbzelletd:nth-child(2):not(:has(.${gTLinkClass}))`;
-        const elemsToGetLink = document.querySelectorAll(`${selectorVerbTrainer}`);
+        // selects the L2 element in the conversation trainer within the daily trainer (the one with single items and an image)
+        const selectorDailyConvoTrainer = '.Konvcontainer #KonvLoesung2';
+
+        const elemsToGetLink = document.querySelectorAll(`${selectorVerbTrainer}, ${selectorDailyConvoTrainer}`);
 
         elemsToGetLink.forEach((elem) => {
             const GTLinkElem = getGTLinkElem();
