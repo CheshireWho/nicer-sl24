@@ -3,7 +3,7 @@
  */
 (function() {
     // the returned functions are called often, but the other init code is called only once for performance
-    const addGoogleTranslateLink = initGoogleTranslateLinkCreation();
+    const addTranslateLink = initTranslateLinkCreation();
     const addVocabTrainerWritingInput = initVocabTrainerAddWriting();
     const cleanUpEndScreen = initCleanUpEndScreen();
 
@@ -14,7 +14,7 @@
         // before making any DOM changes and then re-connect.
 		const observerConfig = { attributes: false, childList: true, subtree: true };
 		const mutationsCallback = (mutationsList, observer) => {
-			addGoogleTranslateLink({ observer, observerTargetNode, observerConfig });
+			addTranslateLink({ observer, observerTargetNode, observerConfig });
 			addVocabTrainerWritingInput({ observer, observerTargetNode, observerConfig });
 			cleanUpEndScreen({ observer, observerTargetNode, observerConfig });
 		};
@@ -23,7 +23,7 @@
 
         // On narrow mobile, the MutationObserver is not triggered on page load in the regular verb trainer.
         // Thus, call it on page load.
-        addGoogleTranslateLink({ observer, observerTargetNode, observerConfig });
+        addTranslateLink({ observer, observerTargetNode, observerConfig });
 	};
 
     init();

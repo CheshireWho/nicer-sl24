@@ -62,9 +62,9 @@ html
 }
 
 /**
- * Google Translate links
+ * Translate links
  */
-html body .gt-link {
+html body .translate-link {
   display: inline-block;
   color: #1967d2 !important;
   background: #4285f41f;
@@ -83,17 +83,17 @@ html body .verbzelletd .verbzelle1 {
   width: auto;
   display: inline-flex;
 }
-html body .verbzelletd .gt-link {
+html body .verbzelletd .translate-link {
   margin-left: 4px;
 }
 
-/* bilungual stories pages */
-html body .LANG1:has(.gt-link),
-html body .TITLES .TITLESINNER:has(.gt-link) {
+/* bilingual stories pages */
+html body .LANG1:has(.translate-link),
+html body .TITLES .TITLESINNER:has(.translate-link) {
   display: flex;
 }
-html body .LANG1 .gt-link,
-html body .TITLES .TITLESINNER .gt-link {
+html body .LANG1 .translate-link,
+html body .TITLES .TITLESINNER .translate-link {
   margin-left: auto;
   align-self: center;
 }
@@ -102,15 +102,18 @@ html body .TITLES .TITLESINNER .gt-link {
 html body td.siebentd.easysieben {
   padding: 8px;
 }
-/* select the cell with the audio button and the Google Translate link */
-html body td.siebentd ~ td:has(.gt-link) {
-  /* This pushes the GT link onto the same line but also outside the table. Tablet should hopefully always have enough space. */
+/* select the cell with the audio button and the translate link */
+html body td.siebentd ~ td:has(.translate-link) {
+  /* This pushes the translate link onto the same line but also outside the table. Tablet should hopefully always have enough space. */
   white-space: nowrap;
 }
-html body td.siebentd ~ td:has(.gt-link) .gt-link {
+html body td.siebentd ~ td:has(.translate-link) .translate-link {
   margin-left: 4px;
 }
-/* select the grey cells and improve the colour contrast */
+
+/**
+ * select the grey cells and improve the colour contrast
+ */
 html body td.siebentd.easysieben[style*='background-color:#B4B4B4;'],
 html body td.siebentd.easysieben[style*='background-color: rgb(180, 180, 180);'] {
   background-color: #7c4597 !important;

@@ -12,7 +12,7 @@
         ],
         "js": [
           "content-scripts/helpers/text-comparison.js",
-          "content-scripts/features/google-translate-links.js",
+          "content-scripts/features/translate-links.js",
           "content-scripts/features/vocab-trainer-writing-exercise.js",
           "content-scripts/features/daily-trainer-end-screen.js",
           "content-scripts/init.js"
