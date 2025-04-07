@@ -64,14 +64,19 @@ html
 /**
  * Translate links
  */
+ html body .translate-link-wrap {
+  display: inline-flex;
+  gap: 12px;
+  margin: 4px 0 2px;
+}
 html body .translate-link {
-  display: inline-block;
+  display: inline-flex;
+  gap: 2px;
   color: #1967d2 !important;
   background: #4285f41f;
   border: 1px solid #1967d2;
   border-radius: 6px;
-  padding: 2px 8px;
-  margin: 4px 0 2px;
+  padding: 2px 4px;
 }
 
 /* verb trainer */
@@ -83,17 +88,17 @@ html body .verbzelletd .verbzelle1 {
   width: auto;
   display: inline-flex;
 }
-html body .verbzelletd .translate-link {
+html body .verbzelletd .translate-link-wrap {
   margin-left: 4px;
 }
 
 /* bilingual stories pages */
-html body .LANG1:has(.translate-link),
-html body .TITLES .TITLESINNER:has(.translate-link) {
+html body .LANG1:has(.translate-link-wrap),
+html body .TITLES .TITLESINNER:has(.translate-link-wrap) {
   display: flex;
 }
-html body .LANG1 .translate-link,
-html body .TITLES .TITLESINNER .translate-link {
+html body .LANG1 .translate-link-wrap,
+html body .TITLES .TITLESINNER .translate-link-wrap {
   margin-left: auto;
   align-self: center;
 }
@@ -103,11 +108,11 @@ html body td.siebentd.easysieben {
   padding: 8px;
 }
 /* select the cell with the audio button and the translate link */
-html body td.siebentd ~ td:has(.translate-link) {
+html body td.siebentd ~ td:has(.translate-link-wrap) {
   /* This pushes the translate link onto the same line but also outside the table. Tablet should hopefully always have enough space. */
   white-space: nowrap;
 }
-html body td.siebentd ~ td:has(.translate-link) .translate-link {
+html body td.siebentd ~ td:has(.translate-link-wrap) .translate-link-wrap {
   margin-left: 4px;
 }
 

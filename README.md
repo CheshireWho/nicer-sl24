@@ -25,7 +25,7 @@ Nicer UI for sprachenlernen24
 - More spacing at the bottom of the content, so that it can be scrolled properly.
 - Increase font size.
 - Some padding and improved colour contrast in the table trainers within the daily trainer.
-- Add links to the following elements that open Google Translate in a new tab with the text:
+- Add links to the following elements that open Google Translate and Microsoft Bing Translate in a new tab with the text:
   - verb trainer items
   - conversation trainer within the daily trainer (the one that teaches single items and has a random image at the bottom)
   - several table trainers within the daily trainer (e.g. the conversion trainer with multiple items)
