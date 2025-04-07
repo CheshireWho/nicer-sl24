@@ -85,10 +85,10 @@ html body div.writing-exercise input:has(+ a.hide) {
     border-radius: 5px !important;
 }
 html body div.writing-exercise input.correct {
-    background: #b9f3aa;
+    background: #c4fcb2;
 }
 html body div.writing-exercise input.partially-correct {
-    background: #abddff;
+    background: #b5f1ff;
 }
 html body div.writing-exercise input.incorrect {
     background: #fcb2a4;
