@@ -56,9 +56,21 @@ html body .verbzelletd {
 
 /* input field added to daily "blitz" vocab trainer for optional writing exercise */
 html body input.writing-exercise {
-    /* if I get the form with button to work, this rule can be removed */
+    /* if I get the form with button to work, these rules can be removed */
     border-radius: 5px !important;
+    float: none !important;
 }
 html body input.writing-exercise.correct {
     background: #b9f3aa;
+}
+
+/* position the input field in the daily "blitz" vocab trainer better, so that the keyboard doesn't hide it */
+@media (max-height: 450px) and (min-width: 868px) {
+    html body #containervok {
+        margin: 10px 0 0 0 !important;
+    }
+    html body .DivAutopilotZusatzicons {
+        height: auto;
+        min-height: auto;
+    }
 }
