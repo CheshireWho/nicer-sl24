@@ -22,3 +22,5 @@ Nicer UI for sprachenlernen24
 ## Features
 
 - Dark font colour for the orange CTAs for better colour contrast.
+- More spacing at the bottom of the content, so that it can be scrolled properly.
+- Add links to verb trainer items that open Google Translate in a new tab with the text (Danish only for now).
