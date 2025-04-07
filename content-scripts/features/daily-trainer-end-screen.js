@@ -56,6 +56,10 @@ const initCleanUpEndScreen = () => {
         return sectionTextContent.includes('Wie gefällt dir dieser Kurs?');
     };
 
+    function isFollowOnFacebookSection(sectionTextContent) {
+        return sectionTextContent.includes('Markiere unsere Facebook-Seite');
+    };
+
     const doTheActualThing = () => {
         const endScreenSectionsSelector = '.endseitenbox';
         const endScreenSections = document.querySelectorAll(endScreenSectionsSelector);
@@ -76,7 +80,8 @@ const initCleanUpEndScreen = () => {
                 isFacebookCommunitySection(sectionTextContent) ||
                 isBookSection(sectionTextContent) ||
                 isFollowOnSocialMediaSection(sectionTextContent) ||
-                isRateCourseSection(sectionTextContent)
+                isRateCourseSection(sectionTextContent) ||
+                isFollowOnFacebookSection(sectionTextContent)
             ) {
                 section.classList.add('hide-end-screen-section');
             }
