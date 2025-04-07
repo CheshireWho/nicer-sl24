@@ -38,6 +38,7 @@ Nicer UI for sprachenlernen24
 - Hide several demotivating and irrelevant sections from the daily trainer end screen.
 - Change colour of the button in the daily trainer for new vocabulary to be added directly to the long term memory section and move it a bit out of the way. This is to prevent accidental clicking it due to its similarity to the regular vocab repetition button.
 - On the language course selection page right after the login, sort Danish and Swedish to the top.
+- Hide some images of vocabulary items, e.g., the one for the word "creepy" because it's creepy :)
 
 ## Tests
 
