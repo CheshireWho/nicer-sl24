@@ -40,7 +40,7 @@ const initVocabTrainerAddWriting = () => {
     const doTheActualThing = () => {
         // Selects the vocabulary text container in the "blitz" trainer in the daily trainer.
         // Select only if no exercise element is there to avoid adding multiple ones (e.g. when other page changes trigger a mutation).
-        const selectorDayTrainerSingleVocab = `#containerblitz .DivAutopilotText:not(:has(.${exerciseElemClass}))`;
+        const selectorDayTrainerSingleVocab = `#ContainerInnerHTMLWithoutMenu #containerblitz .DivAutopilotText:not(:has(.${exerciseElemClass}))`;
         const elemsToExtend = document.querySelectorAll(`${selectorDayTrainerSingleVocab}`);
 
         elemsToExtend.forEach((elem) => {
