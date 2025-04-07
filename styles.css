@@ -48,15 +48,6 @@ html body #Button_Richtig:has(> a > i.fa-stack > svg.svg-inline--fa.fa-trash-can
     color: #e3c5e9 !important;
 }
 
-/* conversation trainer (and potentially other tables) in the daily trainer */
-html body td.siebentd.easysieben {
-    padding: 8px;
-}
-/* should hopefully always select the grey cell and improve the colour contrast */
-html body td.siebentd.easysieben[id^="SiebenB"] {
-    background-color: #7c7b7b;
-}
-
 /* Google Translate links */
 html body .gt-link {
     display: inline-block;
@@ -80,6 +71,23 @@ html body .LANG1 .gt-link,
 html body .TITLES .TITLESINNER .gt-link {
     margin-left: auto;
     align-self: center;
+}
+
+/* conversation trainer (and potentially other tables) in the daily trainer */
+html body td.siebentd.easysieben {
+    padding: 8px;
+}
+/* should select the grey cell and improve the colour contrast */
+html body td.siebentd.easysieben[id^="SiebenB"] {
+    background-color: #7c7b7b;
+}
+/* should select the cell with the audio button and the Google Translate link */
+html body td.siebentd ~ td:has(.gt-link) {
+    /* This pushes the GT link onto the same line but also outside the table. Tablet should hopefully always have enough space. */
+    white-space: nowrap;
+}
+html body td.siebentd ~ td:has(.gt-link) .gt-link {
+    margin-left: 4px;
 }
 
 /* exercise element with input field added to daily "blitz" vocab trainer for optional writing exercise */

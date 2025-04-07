@@ -37,9 +37,12 @@ const initGoogleTranslateLinkCreation = () => {
         const Link = event.target?.closest(`.${gTLinkClass}`);
         let textToTranslate;
 
-        if (Link?.classList.contains('daily-convo-trainer')) {
-            // this link is in the daily trainer's conversation trainer
+        if (Link?.classList.contains('daily-single-convo-trainer')) {
+            // this link is in the daily trainer's single item conversation trainer
             textToTranslate = Link.parentElement.childNodes[0].textContent;
+        } else if (Link?.classList.contains('daily-sieben-trainer')) {
+            // this link is one item in the daily trainer's table trainer (e.g. conversion trainer with multiple items)
+            textToTranslate = Link.previousElementSibling?.textContent;
         } else if (Link?.classList.contains('verb-trainer')) {
             // this link is in the verb trainer
             textToTranslate = Link?.parentElement.textContent?.trim();
@@ -103,8 +106,14 @@ const initGoogleTranslateLinkCreation = () => {
 
             // Selects the L2 element in the conversation trainer within the daily trainer (the one with single items and an image).
             // Select only if no GT link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
-            const selectorDailyConvoTrainer = `.Konvcontainer #KonvLoesung2:not(:has(.${gTLinkClass}))`;
-            appendGtLink(selectorDailyConvoTrainer, 'daily-convo-trainer');
+            const selectorDailySingleConvoTrainer = `.Konvcontainer #KonvLoesung2:not(:has(.${gTLinkClass}))`;
+            appendGtLink(selectorDailySingleConvoTrainer, 'daily-single-convo-trainer');
+
+            // Selects the third column cell in the table trainer within the daily trainer (e.g. the conversiona trainer with the
+            // table of all the items for the current lesson, but could hopefully also cover some other trainers like the dialogues).
+            // Select only if no GT link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
+            const selectorDailySiebenTrainer = `#Blitzwdh3_Mitte tr td.siebentd ~ td:not(.siebentd):not(:has(.${gTLinkClass}))`;
+            appendGtLink(selectorDailySiebenTrainer, 'daily-sieben-trainer');
         } else if (window.location.href.includes('zweisprachige-geschichten')) {
             // Selects the single sentences in bilingual stories.
             // Select only if no GT link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
