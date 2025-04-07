@@ -126,6 +126,18 @@ console.group('textComparison helper #compare');
             console.assert(compare("bar, foo", "foo, bar, baz") === PARTIAL_MATCH);
         }
         console.groupEnd();
+
+        console.group('and any target text item has alternative forms in parentheses');
+        {
+            console.group('treats each possible form as a target item');
+            {
+                console.assert(compare('god, godt', 'god(t)') === IDENTICAL);
+                console.assert(compare('gammel, gammelt, gamle', 'gammel(t), gamle (pl.)') === IDENTICAL);
+                console.assert(compare('gammel, gamle', 'gammel(t), gamle (pl.)') === PARTIAL_MATCH);
+            }
+            console.groupEnd();
+        }
+        console.groupEnd();
     }
     console.groupEnd();
 }
