@@ -126,6 +126,10 @@ const initVocabTrainerAddWriting = () => {
 		};
 		const observer = new MutationObserver(mutationsCallback);
 		observer.observe(observerTargetNode, observerConfig);
+
+        // On narrow mobile, the MutationObserver is not triggered on page load in the regular verb trainer.
+        // Thus, call it on page load.
+        addGoogleTranslateLink({ observer, observerTargetNode, observerConfig });
 	};
 
     init();
