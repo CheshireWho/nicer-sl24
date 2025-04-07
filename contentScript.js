@@ -1,6 +1,12 @@
 const initGoogleTranslateLinkCreation = () => {
+    const languages = {
+        'Daenisch': 'da',
+        'Japanisch': 'jp',
+        'Schwedisch': 'sv'
+    };
+    const l2 = document.querySelector('input[name="ta_sprache"]')?.value;
     const gTLinkClass = 'gt-link';
-    const gTSourceLanguage = 'da'; // TODO make dynamic
+    const gTSourceLanguage = l2 && languages[l2] ? languages[l2] : 'auto';
     const gTTargetLanguage = 'de';
 
     const getGTLinkElem = () => {
