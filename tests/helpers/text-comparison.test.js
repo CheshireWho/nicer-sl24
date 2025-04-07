@@ -54,5 +54,40 @@ console.group('textComparison helper #compare');
         console.groupEnd();
     }
     console.groupEnd();
+
+    console.group('when the target text is a sentence');
+    {
+        console.group(`returns "${PARTIAL_MATCH}" if the first letter's case is different`);
+        {
+            console.assert(compare("lovely day, isn't it?", "Lovely day, isn't it?") === PARTIAL_MATCH);
+        }
+        console.groupEnd();
+
+        console.group(`returns "${PARTIAL_MATCH}" if the punctuation at the end is different`);
+        {
+            console.assert(compare("Lovely day, isn't it", "Lovely day, isn't it?") === PARTIAL_MATCH);
+            console.assert(compare("undskyld", "Undskyld, ...") === PARTIAL_MATCH);
+        }
+        console.groupEnd();
+
+        console.group(`returns "${NO_MATCH}" if punctuation in the middle of the sentence doesn't match`);
+        {
+            console.assert(compare("Lovely day isnt it?", "Lovely day, isn't it?") === NO_MATCH);
+        }
+        console.groupEnd();
+
+        console.group(`returns "${NO_MATCH}" if letter case in the middle of the sentence doesn't match`);
+        {
+            console.assert(compare("Lovely Day isn't it?", "Lovely day, isn't it?") === NO_MATCH);
+        }
+        console.groupEnd();
+
+        console.group(`returns "${NO_MATCH}" if spelling is incorrect`);
+        {
+            console.assert(compare("Lovly day, isn't it?", "Lovely day, isn't it?") === NO_MATCH);
+        }
+        console.groupEnd();
+    }
+    console.groupEnd();
 }
 console.groupEnd();
