@@ -76,6 +76,13 @@ html body .verbzelletd {
     vertical-align: baseline;
     text-align: right;
 }
+html body .verbzelletd .verbzelle1 {
+    width: auto;
+    display: inline-flex;
+}
+html body .verbzelletd .gt-link {
+    margin-left: 4px;
+}
 
 /* bilungual stories pages */
 html body .LANG1:has(.gt-link),
