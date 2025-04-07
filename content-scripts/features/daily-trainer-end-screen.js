@@ -48,6 +48,14 @@ const initCleanUpEndScreen = () => {
         return sectionTextContent.includes('Das Buch zum Sprachkurs:');
     };
 
+    function isFollowOnSocialMediaSection(sectionTextContent) {
+        return sectionTextContent.includes('Folge Sprachenlernen24:');
+    };
+
+    function isRateCourseSection(sectionTextContent) {
+        return sectionTextContent.includes('Wie gefällt dir dieser Kurs?');
+    };
+
     const doTheActualThing = () => {
         const endScreenSectionsSelector = '.endseitenbox';
         const endScreenSections = document.querySelectorAll(endScreenSectionsSelector);
@@ -66,7 +74,9 @@ const initCleanUpEndScreen = () => {
                 isBadgesForVocabAmountSection(sectionTextContent) ||
                 isPointsPerVocabSection(sectionTextContent) ||
                 isFacebookCommunitySection(sectionTextContent) ||
-                isBookSection(sectionTextContent)
+                isBookSection(sectionTextContent) ||
+                isFollowOnSocialMediaSection(sectionTextContent) ||
+                isRateCourseSection(sectionTextContent)
             ) {
                 section.classList.add('hide-end-screen-section');
             }
