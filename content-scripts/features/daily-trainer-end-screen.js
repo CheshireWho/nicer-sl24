@@ -26,8 +26,18 @@ const initCleanUpEndScreen = () => {
         return sectionTextContent.includes('Zusatzpunkte pro Vokabel');
     };
 
-    function isRedeemRewardsSection(sectionTextContent) {
-        return sectionTextContent.includes('Für deine erzielten Punkte bekommst du Prämien, die du hier einlösen kannst:');
+    function improveRedeemRewardsSection(section) {
+        if (section.textContent.includes('Für deine erzielten Punkte bekommst du Prämien, die du hier einlösen kannst:')) {
+            const contentWrap = section.querySelector('.normaltext2');
+            if (!contentWrap) return;
+
+            contentWrap.childNodes.forEach((node) => {
+                if (node.textContent.includes('Punkte pro Wort, weil du dann')) {
+                    // remove this single text node because the given streak is usually inaccurate and the points are irrelevant
+                    node.textContent = '';
+                }
+            });
+        }
     };
 
     const doTheActualThing = () => {
@@ -40,17 +50,18 @@ const initCleanUpEndScreen = () => {
             const sectionTextContent = section.textContent;
             if (!sectionTextContent) return;
 
-            if(
+            if (
                 isDownloadCertificateSection(sectionTextContent) ||
                 isKnowledgeProgressSection(sectionTextContent) ||
                 isBetterThanOthersSection(sectionTextContent) ||
                 isBadgesForDaysInRowSection(sectionTextContent) ||
                 isBadgesForVocabAmountSection(sectionTextContent) ||
-                isPointsPerVocabSection(sectionTextContent) ||
-                isRedeemRewardsSection(sectionTextContent)
+                isPointsPerVocabSection(sectionTextContent)
             ) {
                 section.classList.add('hide-end-screen-section');
             }
+
+            improveRedeemRewardsSection(section);
         });
     };
 
