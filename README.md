@@ -28,7 +28,7 @@ Nicer UI for sprachenlernen24
 - Add links to the following elements that open Google Translate in a new tab with the text:
   - verb trainer items
   - conversation trainer within the daily trainer (the one that teaches single items and has a random image at the bottom)
-  - table trainers within the daily trainer (e.g. the conversion trainer with multiple items)
+  - several table trainers within the daily trainer (e.g. the conversion trainer with multiple items)
   - the bilingual stories:
     - each sentence of any story
     - the heading of each story: the entire story is concatenated and passed to Google Translate.

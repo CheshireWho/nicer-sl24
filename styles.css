@@ -100,8 +100,8 @@ html body td.siebentd.easysieben {
     padding: 8px;
 }
 /* should select the grey cell and improve the colour contrast */
-html body td.siebentd.easysieben[id^="SiebenB"] {
-    background-color: #7c7b7b;
+html body td.siebentd.easysieben:nth-child(2) {
+    background-color: #7c4597 !important;
 }
 /* should select the cell with the audio button and the Google Translate link */
 html body td.siebentd ~ td:has(.gt-link) {
