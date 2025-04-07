@@ -7,7 +7,7 @@
       {
         "matches": [
           "https://www.sprachenlernen24-onlinekurs.de/*",
-          "https://www.sprachenlernen24-onlinekurse.de/login/*",
+          "https://www.sprachenlernen24-onlinekurse.de/*",
           "https://www.sprachenlernen24.de/zweisprachige-geschichten-*"
         ],
         "js": [
