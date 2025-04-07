@@ -75,6 +75,12 @@ const initVocabTrainerAddWriting = () => {
                     case textComparisonHelper.resultCodes.IDENTICAL:
                         inputElem.classList.add('correct');
                         break;
+                    case textComparisonHelper.resultCodes.PARTIAL_MATCH:
+                        inputElem.classList.add('partially-correct');
+                        break;
+                    case textComparisonHelper.resultCodes.NO_MATCH:
+                        inputElem.classList.add('incorrect');
+                        break;
                     default:
                         // do nothing
                 }
