@@ -40,3 +40,8 @@ html body .verbzelletd {
     vertical-align: baseline;
     text-align: right;
 }
+
+/* input field added to daily "blitz" vocab trainer for optional writing exercise */
+html body input.writing-exercise.correct {
+    background: #b9f3aa;
+}
