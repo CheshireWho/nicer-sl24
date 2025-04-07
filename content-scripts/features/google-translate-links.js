@@ -37,11 +37,7 @@ const initGoogleTranslateLinkCreation = () => {
         }
     };
 
-    const addGoogleTranslateLink = ({ observer, observerTargetNode, observerConfig }) => {
-        // stop MutationObserver
-        // Keeping it running while manipulating the DOM would cause an infinite loop.
-        observer.disconnect();
-
+    const doTheActualThing = () => {
         // selects the L2 cells of the verb trainer that don't have a Google Translate link
         const selectorVerbTrainer = `.verbzelletd:nth-child(2):not(:has(.${gTLinkClass}))`;
         const elemsToGetLink = document.querySelectorAll(`${selectorVerbTrainer}`);
@@ -52,6 +48,15 @@ const initGoogleTranslateLinkCreation = () => {
 
             GTLinkElem.addEventListener('click', gTClickHandler);
         });
+    };
+
+    const addGoogleTranslateLink = ({ observer, observerTargetNode, observerConfig }) => {
+        // stop MutationObserver
+        // Keeping it running while manipulating the DOM would cause an infinite loop.
+        observer.disconnect();
+
+        // separate function so that e.g. early returns are possible but the MutationObserver is always restarted
+        doTheActualThing();
 
         // restart MutationObserver
         observer.observe(observerTargetNode, observerConfig);

@@ -5,6 +5,7 @@
     // the returned functions are called often, but the other init code is called only once for performance
     const addGoogleTranslateLink = initGoogleTranslateLinkCreation();
     const addVocabTrainerWritingInput = initVocabTrainerAddWriting();
+    const cleanUpEndScreen = initCleanUpEndScreen();
 
     const init = () => {
 		const observerTargetNode = document.body;
@@ -15,6 +16,7 @@
 		const mutationsCallback = (mutationsList, observer) => {
 			addGoogleTranslateLink({ observer, observerTargetNode, observerConfig });
 			addVocabTrainerWritingInput({ observer, observerTargetNode, observerConfig });
+			cleanUpEndScreen({ observer, observerTargetNode, observerConfig });
 		};
 		const observer = new MutationObserver(mutationsCallback);
 		observer.observe(observerTargetNode, observerConfig);
