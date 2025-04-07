@@ -101,14 +101,29 @@ const textComparison = () => {
             const hyphenAdditionMatches = targetItem.match(regexpHyphenAddition);
 
             if (hyphenAdditionMatches && arr2[index - 1]) {
-                // The item is an additional suffix for the previous item, e.g. ['frokost', '-en']
+                const suffix = hyphenAdditionMatches[1];
+                const baseForm = arr2[index - 1];
 
-                // add the final form of the item and not just the suffix, e.g. 'frokosten'
-                const fullItem = `${arr2[index - 1]}${hyphenAdditionMatches[1]}`;
-                arr2Prepared.push(fullItem);
+                if (suffix.length <= 3) {
+                    // The item is an additional suffix for the previous item, e.g. ['frokost', '-en'], ['nat', '-ten']
 
-                // skip remaining code; this item has been handled
-                return;
+                    // add the final form of the item and not just the suffix, e.g. 'frokosten'
+                    const fullItem = `${baseForm}${suffix}`;
+                    arr2Prepared.push(fullItem);
+
+                    // skip remaining code; this item has been handled
+                    return;
+                }
+
+                if (suffix.endsWith('dlen') && baseForm.endsWith('ddel')) {
+                    // e.g. ['pengeseddel', '-sedlen']
+
+                    const fullItem = baseForm.replace(/(ddel)$/, 'dlen');
+                    arr2Prepared.push(fullItem);
+
+                    // skip remaining code; this item has been handled
+                    return;
+                }
             }
 
             // default case

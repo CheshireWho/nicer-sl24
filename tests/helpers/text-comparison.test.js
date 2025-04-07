@@ -141,11 +141,26 @@ console.group('textComparison helper #compare');
 
         console.group('and any target text item is a suffix indicated by a hyphen');
         {
-            console.group('expects the complete phrase, i.e. base form + suffix');
+            console.group('and the suffix has not more than 3 characters');
             {
-                console.assert(compare('nat, natten', 'nat, -ten') === IDENTICAL);
-                console.assert(compare('frokost, frokosten, middag, middagen', 'frokost, - en, middag, -en') === IDENTICAL);
-                console.assert(compare('middag, frokosten', 'frokost, - en, middag, -en') === PARTIAL_MATCH);
+                console.group('expects the complete phrase, i.e. base form + suffix');
+                {
+                    console.assert(compare('nat, natten', 'nat, -ten') === IDENTICAL);
+                    console.assert(compare('frokost, frokosten, middag, middagen', 'frokost, - en, middag, -en') === IDENTICAL);
+                    console.assert(compare('middag, frokosten', 'frokost, - en, middag, -en') === PARTIAL_MATCH);
+                }
+                console.groupEnd();
+            }
+            console.groupEnd();
+
+            console.group('and the suffix ends with "dlen" and the base form with "ddel"');
+            {
+                console.group('expects the correct complete phrase, i.e. base form with "dlen"');
+                {
+                    console.assert(compare('pengeseddel, pengesedlen', 'pengeseddel, -sedlen') === IDENTICAL);
+                    console.assert(compare('vaskemiddel, vaskemidlen', 'vaskemiddel, -midlen') === IDENTICAL);
+                }
+                console.groupEnd();
             }
             console.groupEnd();
         }
