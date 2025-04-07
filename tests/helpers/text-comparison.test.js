@@ -138,6 +138,18 @@ console.group('textComparison helper #compare');
             console.groupEnd();
         }
         console.groupEnd();
+
+        console.group('and any target text item is a suffix indicated by a hyphen');
+        {
+            console.group('expects the complete phrase, i.e. base form + suffix');
+            {
+                console.assert(compare('nat, natten', 'nat, -ten') === IDENTICAL);
+                console.assert(compare('frokost, frokosten, middag, middagen', 'frokost, - en, middag, -en') === IDENTICAL);
+                console.assert(compare('middag, frokosten', 'frokost, - en, middag, -en') === PARTIAL_MATCH);
+            }
+            console.groupEnd();
+        }
+        console.groupEnd();
     }
     console.groupEnd();
 }
