@@ -1,32 +1,33 @@
-html {
-    body {
-        /* improve colour contrast for orange CTAs */
-        a.ctabutton {
-            color: #000077 !important;
-        }
+/* improve colour contrast for orange CTAs */
+html body a.ctabutton {
+    color: #000077 !important;
+}
 
-        /* increase font size */
-        font-size: 18px;
-        #normaltext, .normaltext,
-        .menulink {
-            font-size: 18px;
-        }
-        table td {
-            font-size: 1rem;
-        }
+/* increase font size */
+html body {
+    font-size: 18px;
+}
+html body #normaltext, html body .normaltext,
+html body .menulink {
+    font-size: 18px;
+}
+html body table td {
+    font-size: 1rem;
+}
 
-        /* allow scrolling to the end */
-        #containerwithmenu, #containertransparentglobal, #containertransparent, #containerintransparent {
-            padding-bottom: 150px;
-        }
+/* allow scrolling to the end */
+html body #containerwithmenu,
+html body #containertransparentglobal,
+html body #containertransparent,
+html body #containerintransparent {
+    padding-bottom: 150px;
+}
 
-        /* Google Translate links */
-        .gt-link {
-            background: lightseagreen;
-            border: 1px solid darkblue;
-            padding: 0 4px;
-            border-radius: 8px;
-            margin-left: 8px;
-        }
-    }
+/* Google Translate links */
+html body .gt-link {
+    background: lightseagreen;
+    border: 1px solid darkblue;
+    padding: 0 4px;
+    border-radius: 8px;
+    margin-left: 8px;
 }
