@@ -6,7 +6,11 @@
     "content_scripts": [
       {
         "matches": ["https://www.sprachenlernen24-onlinekurse.de/login/*"],
-        "js": ["contentScript.js"],
+        "js": [
+          "content-scripts/features/google-translate-links.js",
+          "content-scripts/features/vocab-trainer-writing-exercise.js",
+          "content-scripts/init.js"
+        ],
         "css": ["styles.css"]
       }
     ]
