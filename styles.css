@@ -184,16 +184,16 @@ html body .endseitenbox.hide-end-screen-section {
 /**
  * sort some languages to the top on the language course selection page after the login
  */
-html body div:has(> #gelbbox) {
+html body div:has(> #gelbbox img[src*='Flaggen']) {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
-html body div:has(> #gelbbox) > br {
+html body div:has(> #gelbbox img[src*='Flaggen']) > br {
   display: none;
 }
-html body div:has(> #gelbbox) #gelbbox:has(img[src*='daenisch']),
-html body div:has(> #gelbbox) #gelbbox:has(img[src*='schwedisch']) {
+html body div:has(> #gelbbox img[src*='Flaggen']) #gelbbox:has(img[src*='daenisch']),
+html body div:has(> #gelbbox img[src*='Flaggen']) #gelbbox:has(img[src*='schwedisch']) {
   order: -1;
 }
 
