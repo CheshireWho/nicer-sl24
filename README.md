@@ -6,7 +6,7 @@ Nicer UI for sprachenlernen24
 
 ### Android
 
-1. Use the Kiwi browser to get a Chrome that allows installng extensions just like the desktop Chrome does.
+1. Use the Kiwi browser to get a Chrome that allows installing extensions just like the desktop Chrome does.
 2. Download this project as Zip.
 3. Open [chrome://extensions/](chrome://extensions/) in Kiwi.
 4. With "Developer mode" enabled, click "+(from .zip/.crx.js/.user.js)". Then select the downloaded Zip file.
