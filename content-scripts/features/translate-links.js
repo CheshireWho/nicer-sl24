@@ -19,6 +19,7 @@ const initTranslateLinkCreation = () => {
   const translateLinkClass = 'translate-link';
   const googleTranslateLinkClass = 'google-translate';
   const microsoftTranslateLinkClass = 'microsoft-translate';
+  const translateLinksNewElemWrapClass = 'translate-links-new-elem-wrap';
   const translateSourceLanguage = l2 && languages[l2] ? languages[l2] : 'auto';
   const translateTargetLanguage = 'de';
 
@@ -75,20 +76,41 @@ const initTranslateLinkCreation = () => {
       // this link is in the daily trainer's single item conversation trainer
       textToTranslate = Link.closest(`.${translateLinksClass}`).parentElement.childNodes[0].textContent;
     } else if (Link?.classList.contains('daily-sieben-trainer')) {
-      // this link is one item in the daily trainer's table trainer (e.g. conversion trainer with multiple items)
+      // this link is one item in the daily trainer's table trainer (e.g., conversion trainer with multiple items, or dialogue trainer)
       textToTranslate = Link.closest('td').previousElementSibling?.textContent;
+    } else if (Link?.classList.contains('daily-sieben-trainer-entire-text')) {
+      // this link is right after the daily trainer's table trainer (e.g., conversion trainer with multiple items, or dialogue trainer)
+      const sentences = [];
+
+      const learnLanguageCells = Link.closest(`.${translateLinksNewElemWrapClass}`).previousElementSibling?.querySelectorAll(
+        'td.siebentd:has(+ td:not(.siebentd))'
+      );
+
+      // collect the text of all the items in the table
+      learnLanguageCells?.forEach((cell) => {
+        const cellText = cell.textContent?.trim();
+        if (cellText) {
+          sentences.push(cellText);
+        }
+      });
+
+      textToTranslate = sentences.join(' ');
     } else if (Link?.classList.contains('verb-trainer')) {
       // this link is in the verb trainer
       textToTranslate = Link?.closest(`.${translateLinksClass}`).parentElement.textContent?.trim();
     } else if (Link?.classList.contains('bilingual-stories-single-item')) {
       // this link is a single item in the bilingual stories
-      textToTranslate = Link?.closest(`.${translateLinksClass}`).parentElement.querySelector('.div_td:nth-child(2)')?.textContent?.trim();
+      textToTranslate = Link?.closest(`.${translateLinksClass}`)
+        .parentElement.querySelector('.div_td:nth-child(2)')
+        ?.textContent?.trim();
     } else if (Link?.classList.contains('bilingual-stories-story-heading-item')) {
       // this link is a story heading item in the bilingual stories
       const sentences = [];
 
       // add the story heading L2 text for the translate link
-      const headingL2Text = `${Link?.closest(`.${translateLinksClass}`).parentElement.querySelector('.LANGX1')?.textContent?.trim()}.`;
+      const headingL2Text = `${Link?.closest(`.${translateLinksClass}`)
+        .parentElement.querySelector('.LANGX1')
+        ?.textContent?.trim()}.`;
       sentences.push(headingL2Text);
 
       let currentElement = Link?.closest('.TITLES');
@@ -125,14 +147,33 @@ const initTranslateLinkCreation = () => {
     }
   };
 
-  // Add a translate link box to each selector match.
-  // Add the className to the link for easy distinguishing
-  const appendTranslateLink = (selector, className) => {
+  /**
+   * Add a translate link box to each selector match.
+   * Add the className to the link for easy distinguishing
+   *
+   * @param {string} selector - selector for all elements that will get translate links
+   * @param {string} className - class name that will be added to each translate link
+   * @param {string} [newElemNodeName] - If set, a new element of the given node name is created. That element is inserted into the DOM
+   *        right AFTER the given selector. This newly created element is the one that gets the translate links appended.
+   */
+  const appendTranslateLink = (selector, className, newElemNodeName = undefined) => {
     const elemsToGetLink = document.querySelectorAll(selector);
 
     elemsToGetLink.forEach((elem) => {
       const TranslateLinksElem = getTranslateLinksElem();
-      elem.appendChild(TranslateLinksElem);
+      let elemToGetLink;
+
+      if (newElemNodeName) {
+        const newElem = document.createElement(newElemNodeName);
+        newElem.classList.add(translateLinksNewElemWrapClass);
+
+        elem.after(newElem);
+        elemToGetLink = newElem;
+      } else {
+        elemToGetLink = elem;
+      }
+
+      elemToGetLink.appendChild(TranslateLinksElem);
 
       const translateLinkElems = TranslateLinksElem.querySelectorAll('a');
       translateLinkElems.forEach((translateLink) => {
@@ -154,11 +195,17 @@ const initTranslateLinkCreation = () => {
       const selectorDailySingleConvoTrainer = `.Konvcontainer #KonvLoesung2:not(:has(.${translateLinkClass}))`;
       appendTranslateLink(selectorDailySingleConvoTrainer, 'daily-single-convo-trainer');
 
-      // Selects the third column cell in the table trainer within the daily trainer (e.g. the conversion trainer with the
-      // table of all the items for the current lesson, but could hopefully also cover some other trainers like the dialogues).
+      // Selects the third column cell in the table trainer within the daily trainer (e.g. the conversation trainer with the
+      // table of all the items for the current lesson, or the dialogue trainer).
       // Select only if no translate link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
       const selectorDailySiebenTrainer = `#Blitzwdh3_Mitte tr td.siebentd ~ td:not(.siebentd):not(:has(.${translateLinkClass}))`;
       appendTranslateLink(selectorDailySiebenTrainer, 'daily-sieben-trainer');
+
+      // Selects the entire table of the conversation / dialogue trainer within the daily trainer (i.e., the table with all the items for the
+      // current lesson) to add translate links for the entire text and not just the individual items.
+      // Select only if no translate link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
+      const selectorDailySiebenTrainerTable = `#Blitzwdh3_Mitte table:has(td.siebentd):not(:has(+ div.${translateLinksNewElemWrapClass})`;
+      appendTranslateLink(selectorDailySiebenTrainerTable, 'daily-sieben-trainer-entire-text', 'div');
     } else if (window.location.href.includes('zweisprachige-geschichten')) {
       // Selects the single sentences in bilingual stories.
       // Select only if no translate link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).

@@ -79,6 +79,10 @@ html body .translate-link {
   padding: 2px 4px;
 }
 
+html body .translate-links-new-elem-wrap {
+  text-align: center;
+}
+
 /* verb trainer */
 html body .verbzelletd {
   vertical-align: baseline;
