@@ -135,6 +135,28 @@ html body td.siebentd.easysieben[style*=' color: rgb(180, 180, 180);'] {
 }
 
 /**
+ * verb trainer: lighter background colours to decrease contrast with white page
+ */
+ /* first column */
+html body td.verbzelletd .verbzelle1.easysieben.colorsieben1[style*='background:#4444BB'] {
+  background-color: #6666da !important;
+}
+ /* second column */
+html body td.verbzelletd .verbzelle1.easysieben.colorsieben2[style*='background:#222277'] {
+  background-color: #5454cd !important;
+}
+/* text within second column */
+html body td.verbzelletd .verbzelle1.easysieben.colorsieben2 .verbzellediv[style*='background:#222277'],
+html body td.verbzelletd .verbzelle1.easysieben.colorsieben2 .verbzellediv[style*='background: rgb(34, 34, 119)'] {
+  background-color: #5454cd !important;
+}
+/* "hidden" text within second column. The space is important to not match "background-color". */
+html body td.verbzelletd .verbzelle1.easysieben.colorsieben2 .verbzellediv[style*=' color:#222277'] {
+  /* the text is "hidden" by having the same colour as the background */
+  color: #5454cd !important;
+}
+
+/**
  * exercise element with input field added to daily "blitz" vocab trainer for optional writing exercise
  */
 html body div.writing-exercise {
