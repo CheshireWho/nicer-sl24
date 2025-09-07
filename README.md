@@ -32,6 +32,9 @@ Nicer UI for sprachenlernen24
   - Several table trainers within the daily trainer (e.g., the conversion trainer with multiple items or the dialogue trainer):
     - each individual row
     - below the entire table: all the rows are concatenated and passed to Google / Microsoft Translate.
+  - Several table trainers within the regular (non-daily) trainer (e.g., the conversion trainer or the dialogue trainer):
+    - each individual row
+    - below the entire table: all the rows are concatenated and passed to Google / Microsoft Translate.
   - The bilingual stories:
     - each sentence of any story
     - the heading of each story: the entire story is concatenated and passed to Google / Microsoft Translate.

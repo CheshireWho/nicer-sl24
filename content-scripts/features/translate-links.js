@@ -82,9 +82,29 @@ const initTranslateLinkCreation = () => {
       // this link is right after the daily trainer's table trainer (e.g., conversion trainer with multiple items, or dialogue trainer)
       const sentences = [];
 
-      const learnLanguageCells = Link.closest(`.${translateLinksNewElemWrapClass}`).previousElementSibling?.querySelectorAll(
-        'td.siebentd:has(+ td:not(.siebentd))'
-      );
+      const learnLanguageCells = Link.closest(
+        `.${translateLinksNewElemWrapClass}`
+      ).previousElementSibling?.querySelectorAll('td.siebentd:has(+ td:not(.siebentd))');
+
+      // collect the text of all the items in the table
+      learnLanguageCells?.forEach((cell) => {
+        const cellText = cell.textContent?.trim();
+        if (cellText) {
+          sentences.push(cellText);
+        }
+      });
+
+      textToTranslate = sentences.join(' ');
+    } else if (Link?.classList.contains('regular-trainer')) {
+      // this link is one item in the regular table trainers (e.g., conversion trainer, or dialogue trainer)
+      textToTranslate = Link.closest('td').previousElementSibling?.textContent?.trim();
+    } else if (Link?.classList.contains('regular-trainer-entire-text')) {
+      // this link is right after the regular table trainers (e.g., conversion trainer, or dialogue trainer)
+      const sentences = [];
+
+      const learnLanguageCells = Link.closest(
+        `.${translateLinksNewElemWrapClass}`
+      ).previousElementSibling?.querySelectorAll('tr.darstellenf1untenlinie td:nth-child(2)');
 
       // collect the text of all the items in the table
       learnLanguageCells?.forEach((cell) => {
@@ -206,6 +226,18 @@ const initTranslateLinkCreation = () => {
       // Select only if no translate link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
       const selectorDailySiebenTrainerTable = `#Blitzwdh3_Mitte table:has(td.siebentd):not(:has(+ div.${translateLinksNewElemWrapClass})`;
       appendTranslateLink(selectorDailySiebenTrainerTable, 'daily-sieben-trainer-entire-text', 'div');
+
+      // Selects the third column cell in the table trainer within the regular (non-daily) trainers (e.g. the conversation trainer,
+      // or the dialogue trainer).
+      // Select only if no translate link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
+      const selectorRegularTrainer = `#xcontainerintransparent tr.darstellenf1untenlinie td:nth-child(3):not(:has(.${translateLinkClass}))`;
+      appendTranslateLink(selectorRegularTrainer, 'regular-trainer');
+
+      // Selects the entire table of the conversation / dialogue trainer within the regular (non-daily) trainers  to add translate
+      // links for the entire text and not just the individual items.
+      // Select only if no translate link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
+      const selectorRegularTrainerTable = `#xcontainerintransparent table:has(tr.darstellenf1untenlinie):not(:has(+ div.${translateLinksNewElemWrapClass})`;
+      appendTranslateLink(selectorRegularTrainerTable, 'regular-trainer-entire-text', 'div');
     } else if (window.location.href.includes('zweisprachige-geschichten')) {
       // Selects the single sentences in bilingual stories.
       // Select only if no translate link is there to avoid adding multiple links (e.g. when other page changes trigger a mutation).
