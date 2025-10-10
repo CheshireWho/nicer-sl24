@@ -30,6 +30,7 @@ html body #containertransparentglobal,
 html body #containertransparent,
 html body #containerintransparent,
 html body #Gesamtmenu,
+html body #alertboxcss,
 html body #OverlayMainboxID {
   padding-bottom: 150px;
 }
@@ -64,7 +65,7 @@ html
 /**
  * Translate links
  */
- html body .translate-link-wrap {
+html body .translate-link-wrap {
   display: inline-flex;
   gap: 12px;
   margin: 4px 0 2px;
@@ -137,11 +138,11 @@ html body td.siebentd.easysieben[style*=' color: rgb(180, 180, 180);'] {
 /**
  * verb trainer: lighter background colours to decrease contrast with white page
  */
- /* first column */
+/* first column */
 html body td.verbzelletd .verbzelle1.easysieben.colorsieben1[style*='background:#4444BB'] {
   background-color: #6666da !important;
 }
- /* second column */
+/* second column */
 html body td.verbzelletd .verbzelle1.easysieben.colorsieben2[style*='background:#222277'] {
   background-color: #5454cd !important;
 }
