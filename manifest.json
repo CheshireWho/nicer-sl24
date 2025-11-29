@@ -1,23 +1,24 @@
 {
-    "name": "Nicer sl24",
-    "description": "Nicer UI for sprachenlernen24",
-    "version": "1.0",
-    "manifest_version": 3,
-    "content_scripts": [
-      {
-        "matches": [
-          "https://www.sprachenlernen24-onlinekurs.de/*",
-          "https://www.sprachenlernen24-onlinekurse.de/*",
-          "https://www.sprachenlernen24.de/zweisprachige-geschichten-*"
-        ],
-        "js": [
-          "content-scripts/helpers/text-comparison.js",
-          "content-scripts/features/translate-links.js",
-          "content-scripts/features/vocab-trainer-writing-exercise.js",
-          "content-scripts/features/daily-trainer-end-screen.js",
-          "content-scripts/init.js"
-        ],
-        "css": ["styles.css"]
-      }
-    ]
-  }
+  "name": "Nicer sl24",
+  "description": "Nicer UI for sprachenlernen24",
+  "version": "1.0",
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.sprachenlernen24-onlinekurs.de/*",
+        "https://www.sprachenlernen24-onlinekurse.de/*",
+        "https://www.sprachenlernen24.de/zweisprachige-geschichten-*",
+        "https://www.sprachenlernen24-shops.de/*"
+      ],
+      "js": [
+        "content-scripts/helpers/text-comparison.js",
+        "content-scripts/features/translate-links.js",
+        "content-scripts/features/vocab-trainer-writing-exercise.js",
+        "content-scripts/features/daily-trainer-end-screen.js",
+        "content-scripts/init.js"
+      ],
+      "css": ["styles.css"]
+    }
+  ]
+}
