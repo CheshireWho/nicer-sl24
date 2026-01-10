@@ -220,6 +220,7 @@ html body div:has(> #gelbbox img[src*='Flaggen']) > br {
   display: none;
 }
 html body div:has(> #gelbbox img[src*='Flaggen']) #gelbbox:has(img[src*='daenisch']),
+html body div:has(> #gelbbox img[src*='Flaggen']) #gelbbox:has(img[src*='japanisch']),
 html body div:has(> #gelbbox img[src*='Flaggen']) #gelbbox:has(img[src*='schwedisch']) {
   order: -1;
 }
