@@ -231,8 +231,12 @@ html body div:has(> #gelbbox img[src*='Flaggen']) #gelbbox:has(img[src*='schwedi
 html body img:is([src*='/grafik450/2440.webp'], [src*='/grafik450/2444.webp']) {
   border: 10px solid #00d9ff;
 
-  -webkit-mask: linear-gradient(#000 0 0), linear-gradient(#000 0 0) content-box;
-  mask: linear-gradient(#000 0 0), linear-gradient(#000 0 0) content-box;
+  -webkit-mask:
+    linear-gradient(#000 0 0),
+    linear-gradient(#000 0 0) content-box;
+  mask:
+    linear-gradient(#000 0 0),
+    linear-gradient(#000 0 0) content-box;
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
