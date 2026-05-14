@@ -25,7 +25,7 @@ const textComparison = () => {
   }
 
   function isSentence(text) {
-    // Matches if text starts with an uppercase letter, anything inbetween, and ends with punctuation.
+    // Matches if text starts with an uppercase letter, anything in between, and ends with punctuation.
     // Could also be multiple sentences.
     // Note that 'Punctuation' matches quite a lot.
     const regexp = /^\p{Uppercase_Letter}(.*)?\p{Punctuation}$/u;
@@ -85,7 +85,7 @@ const textComparison = () => {
         // The item has optional additional letters, e.g. 'gammel(t)'.
         // To avoid having to type the parentheses and instead allow typing the actually correct phrases, split these
         // items into all possible correct forms, i.e. 'gammel' and 'gammelt'.
-        // IMPORTANT: this means that typing the parenthses is no longer treated as being correct!
+        // IMPORTANT: this means that typing the parentheses is no longer treated as being correct!
 
         // add the main phrase, e.g. 'gammel' (i.e. the first matching group)
         arr2Prepared.push(parenthesesMatches[1]);
@@ -223,10 +223,10 @@ const textComparison = () => {
     }
 
     // The strings are now lists of phrases with one or more items. So split them to compare the items.
-    // e.g. 'foo, bar', 'foo,bar' --> ['foo', 'bar']
-    const text1Pieces = text1.split(',').map((item) => item.trim());
-    // some target texts use '/' as delimiter instead of ',', e.g. 'foo, bar', 'foo,bar', 'foo / bar' --> ['foo', 'bar']
-    const text2Pieces = text2.split(/[,/]/).map((item) => item.trim());
+    // e.g. 'foo, bar', 'foo,bar', 'foo、bar' --> ['foo', 'bar']
+    const text1Pieces = text1.split(/[,、､]/).map((item) => item.trim());
+    // some target texts use other delimiters than ',', e.g. 'foo, bar', 'foo,bar', 'foo / bar', 'foo、bar' --> ['foo', 'bar']
+    const text2Pieces = text2.split(/[,/、､]/).map((item) => item.trim());
 
     if (text1Pieces.length > 0 && text2Pieces.length > 0) {
       return compareArrays(text1Pieces, text2Pieces);

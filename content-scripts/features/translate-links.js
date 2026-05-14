@@ -4,7 +4,7 @@
 const initTranslateLinkCreation = () => {
   const languages = {
     daenisch: 'da',
-    japanisch: 'jp',
+    japanisch: 'ja',
     schwedisch: 'sv',
   };
 
@@ -68,16 +68,47 @@ const initTranslateLinkCreation = () => {
     return TranslateLinksElem;
   };
 
+  const getPreparedTextContent = (rawTextContent) => {
+    if (!rawTextContent) return '';
+
+    // Japanese text usually has multiple lines that also include Romaji.
+    // Any non-Japanese lines are filtered out here.
+    if (l2 === 'japanisch') {
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Unicode_character_class_escape
+      // For whatever reason, the code 'Jpan' isn't allowed and causes a syntax error. Thus, use the codes it is an alias for instead.
+      const japaneseCharactersRegex = /\p{Script=Han}|\p{Script=Hira}|\p{Script=Kana}/gu;
+
+      const lines = rawTextContent.split('\n');
+      const preparedLines = [];
+
+      for (let index = 0; index < lines.length; index++) {
+        const line = lines[index];
+
+        const japaneseCharactersMatches = line.match(japaneseCharactersRegex);
+        if (japaneseCharactersMatches?.length > 0) {
+          // if a text line has at least one Japanese character, keep it
+          preparedLines.push(line.trim());
+        }
+      }
+
+      return preparedLines.join('\n');
+    }
+
+    return rawTextContent.trim();
+  };
+
   const translateClickHandler = (event) => {
     const Link = event.target?.closest(`.${translateLinkClass}`);
     let textToTranslate;
 
     if (Link?.classList.contains('daily-single-convo-trainer')) {
       // this link is in the daily trainer's single item conversation trainer
-      textToTranslate = Link.closest(`.${translateLinksClass}`).parentElement.childNodes[0].textContent;
+      textToTranslate = getPreparedTextContent(
+        Link.closest(`.${translateLinksClass}`).parentElement.childNodes[0].innerText,
+      );
     } else if (Link?.classList.contains('daily-sieben-trainer')) {
       // this link is one item in the daily trainer's table trainer (e.g., conversion trainer with multiple items, or dialogue trainer)
-      textToTranslate = Link.closest('td').previousElementSibling?.textContent;
+      textToTranslate = getPreparedTextContent(Link.closest('td').previousElementSibling?.innerText);
     } else if (Link?.classList.contains('daily-sieben-trainer-entire-text')) {
       // this link is right after the daily trainer's table trainer (e.g., conversion trainer with multiple items, or dialogue trainer)
       const sentences = [];
@@ -88,7 +119,7 @@ const initTranslateLinkCreation = () => {
 
       // collect the text of all the items in the table
       learnLanguageCells?.forEach((cell) => {
-        const cellText = cell.textContent?.trim();
+        const cellText = getPreparedTextContent(cell.innerText);
         if (cellText) {
           sentences.push(cellText);
         }
@@ -97,7 +128,7 @@ const initTranslateLinkCreation = () => {
       textToTranslate = sentences.join(' ');
     } else if (Link?.classList.contains('regular-trainer')) {
       // this link is one item in the regular table trainers (e.g., conversion trainer, or dialogue trainer)
-      textToTranslate = Link.closest('td').previousElementSibling?.textContent?.trim();
+      textToTranslate = getPreparedTextContent(Link.closest('td').previousElementSibling?.innerText);
     } else if (Link?.classList.contains('regular-trainer-entire-text')) {
       // this link is right after the regular table trainers (e.g., conversion trainer, or dialogue trainer)
       const sentences = [];
@@ -108,7 +139,7 @@ const initTranslateLinkCreation = () => {
 
       // collect the text of all the items in the table
       learnLanguageCells?.forEach((cell) => {
-        const cellText = cell.textContent?.trim();
+        const cellText = getPreparedTextContent(cell.innerText);
         if (cellText) {
           sentences.push(cellText);
         }
@@ -117,20 +148,20 @@ const initTranslateLinkCreation = () => {
       textToTranslate = sentences.join(' ');
     } else if (Link?.classList.contains('verb-trainer')) {
       // this link is in the verb trainer
-      textToTranslate = Link?.closest(`.${translateLinksClass}`).parentElement.textContent?.trim();
+      textToTranslate = getPreparedTextContent(Link?.closest(`.${translateLinksClass}`).parentElement.innerText);
     } else if (Link?.classList.contains('bilingual-stories-single-item')) {
       // this link is a single item in the bilingual stories
-      textToTranslate = Link?.closest(`.${translateLinksClass}`)
-        .parentElement.querySelector('.div_td:nth-child(2)')
-        ?.textContent?.trim();
+      textToTranslate = getPreparedTextContent(
+        Link?.closest(`.${translateLinksClass}`).parentElement.querySelector('.div_td:nth-child(2)')?.innerText,
+      );
     } else if (Link?.classList.contains('bilingual-stories-story-heading-item')) {
       // this link is a story heading item in the bilingual stories
       const sentences = [];
 
       // add the story heading L2 text for the translate link
-      const headingL2Text = `${Link?.closest(`.${translateLinksClass}`)
-        .parentElement.querySelector('.LANGX1')
-        ?.textContent?.trim()}.`;
+      const headingL2Text = `${getPreparedTextContent(
+        Link?.closest(`.${translateLinksClass}`).parentElement.querySelector('.LANGX1')?.innerText,
+      )}.`;
       sentences.push(headingL2Text);
 
       let currentElement = Link?.closest('.TITLES');
@@ -146,7 +177,7 @@ const initTranslateLinkCreation = () => {
 
         if (currentElement.classList.contains('LANG1')) {
           // This is an L2 text of this specific story. Add it to the GT link.
-          const l2Text = currentElement.querySelector('.div_td:nth-child(2)')?.textContent?.trim();
+          const l2Text = getPreparedTextContent(currentElement.querySelector('.div_td:nth-child(2)')?.innerText);
           sentences.push(l2Text);
         }
       }

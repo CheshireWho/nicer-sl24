@@ -45,7 +45,12 @@ const initVocabTrainerAddWriting = () => {
 
     elemsToExtend.forEach((elem) => {
       const germanTextElem = elem.querySelector('.DivAutopilotWort1');
-            const l2TextElem = elem.querySelector('.DivAutopilotWort2');
+
+      // Latin character languages have only one such element. But e.g. Japanese adds more for Romaji. Thus, select only first.
+      const l2TextElem = elem.querySelectorAll(
+        '.DivAutopilotWort2 .blitzschriftplus2:not(:has(.blitzschriftplus2))',
+      )[0];
+
       if (!germanTextElem) return;
 
       const exerciseElem = getExerciseElem();
